@@ -186,7 +186,7 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab1">
-                                        <div class="row">
+                                        <!--                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                                 <a class="dashboard-stat dashboard-stat-v2 green-jungle" href="#" id="devTotals">
                                                     <div class="visual">
@@ -226,8 +226,23 @@
                                                     </div>
                                                 </a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="clearfix"></div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject bold uppercase font-dark">实时访客总量</span>
+                                                            <span class="caption-helper">更新时间：2017/9/29 11:23:25</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div id="echarts_time_users" style="height:400px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="portlet light">
@@ -235,7 +250,7 @@
                                                         <div class="caption">
                                                             <form class="form-inline">
                                                                 <div class="form-group">
-                                                                    <span class="caption-subject bold uppercase font-dark">图表</span>
+                                                                    <span class="caption-subject bold uppercase font-dark">历史统计</span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <button type="button" class="btn blue btn-outline btn-circle" id="btnLast7Day">最近7天</button>
@@ -252,28 +267,14 @@
                                                         <div class="actions">
                                                             <div class="btn-group btn-group-devided" data-toggle="buttons">
                                                                 <label class="btn btn-transparent blue-oleo btn-no-border btn-outline btn-circle btn-sm active" id="barType">
-                                                                    <input type="radio" name="options" class="toggle">柱状图</label>
+                                                                    <input type="radio" name="options" class="toggle" id="option1">柱状图</label>
                                                                 <label class="btn btn-transparent blue-oleo btn-no-border btn-outline btn-circle btn-sm" id="lineType">
-                                                                    <input type="radio" name="options" class="toggle">折线图</label>
+                                                                    <input type="radio" name="options" class="toggle" id="option2">折线图</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="portlet-body">
-                                                        <div id="echarts_users" style="height:400px;"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12">
-                                                <div class="portlet light portlet-fit portlet-datatable bordered">
-                                                    <div class="portlet-title">
-                                                        <div class="caption">
-                                                            <span class="caption-subject bold uppercase font-dark">列表</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="portlet-body">
+                                                        <div id="echarts_users" style="height:400px;margin-bottom: 20px;"></div>
                                                         <table id="mytable"></table>
                                                     </div>
                                                 </div>
@@ -343,9 +344,11 @@
         var xDataDays = [];
         var yDataDays = {};
         $('#dateTimeSel').daterangepicker({
-            startDate: moment().subtract('days', 6),
-            endDate: moment(),
+            startDate: moment().subtract(7, 'days'),
+            endDate: moment().subtract(1, 'days'),
+            maxDate: moment().subtract(1, 'days'),
             locale: {
+                format: "YYYY/MM/DD",
                 applyLabel: '保存',
                 cancelLabel: '取消',
                 fromLabel: 'From',
@@ -363,12 +366,15 @@
             dayCount = Math.round((Math.abs(time2 - time1)) / (1000 * 60 * 60 * 24));
             xDataDays = [];
             xDataDays.push(end.format('YYYY-MM-DD'));
-            for (var i = 0; i < dayCount - 1; i++) {
-                var time = end.subtract('days', 1);
-                time = time.format('YYYY-MM-DD');
-                xDataDays.unshift(time);
-            }
-            end.add(dayCount - 1, 'day');
+            if (dayCount > 1) {
+                for (var i = 0; i < dayCount - 1; i++) {
+                    var time = end.subtract(1, 'days');
+                    time = time.format('YYYY-MM-DD');
+                    xDataDays.unshift(time);
+                }
+                end.add(dayCount - 1, 'day');
+            } else { dayCount = 1 }
+
             // var yDataDays = {};
             yDataDays = getRandomYData(yDataDays, dayCount);
             var show = false;
@@ -403,11 +409,11 @@
         });
 
         /////////////////////////////////////////////////////////////////////////////////////
-        //初始化图表
+        //初始化图表1
         var myChart = echarts.init(document.getElementById('echarts_users'), 'shine');
         xDataDays = [];
-        for (var i = 6; i >= 0; i--) {
-            var time = moment().subtract('days', i);
+        for (var i = 7; i >= 1; i--) {
+            var time = moment().subtract(i, 'days');
             time = time.format('YYYY-MM-DD');
             xDataDays.push(time);
         }
@@ -463,18 +469,36 @@
                 type: 'bar', // bar/line
                 // stack: '123',
                 data: yDataDays.allUsers,
+                // label: {
+                //     normal: {
+                //         show: true,
+                //         formatter: '{c}'
+                //     }
+                // }
             }, {
                 name: '新客',
                 type: 'bar',
                 barWidth: '10%',
                 stack: '总客流', // 总客流/其他
                 data: yDataDays.newUsers,
+                // label: {
+                //     normal: {
+                //         show: true,
+                //         formatter: '{c}'
+                //     }
+                // }
             }, {
                 name: '老客',
                 type: 'bar',
                 barWidth: '10%',
                 stack: '总客流',
                 data: yDataDays.oldUsers,
+                // label: {
+                //     normal: {
+                //         show: true,
+                //         formatter: '{c}'
+                //     }
+                // }
             }, ]
         };
         myChart.showLoading();
@@ -493,11 +517,11 @@
             dayCount = 7;
             $('#btnLast30Day').removeClass("active");
             $('#btnLast7Day').addClass("active");
-            $('#dateTimeSel').data('daterangepicker').setStartDate(moment().subtract('days', 6));
-            $('#dateTimeSel').data('daterangepicker').setEndDate(moment());
+            $('#dateTimeSel').data('daterangepicker').setStartDate(moment().subtract(7, 'days'));
+            $('#dateTimeSel').data('daterangepicker').setEndDate(moment().subtract(1, 'days'));
             xDataDays = [];
-            for (var i = 6; i >= 0; i--) {
-                var time = moment().subtract('days', i);
+            for (var i = 7; i >= 1; i--) {
+                var time = moment().subtract(i, 'days');
                 time = time.format('YYYY-MM-DD');
                 xDataDays.push(time);
             }
@@ -538,11 +562,11 @@
             dayCount = 30;
             $('#btnLast30Day').addClass("active");
             $('#btnLast7Day').removeClass("active");
-            $('#dateTimeSel').data('daterangepicker').setStartDate(moment().subtract('days', 29));
-            $('#dateTimeSel').data('daterangepicker').setEndDate(moment());
+            $('#dateTimeSel').data('daterangepicker').setStartDate(moment().subtract(30, 'days'));
+            $('#dateTimeSel').data('daterangepicker').setEndDate(moment().subtract(1, 'days'));
             xDataDays = [];
-            for (var i = 29; i >= 0; i--) {
-                var time = moment().subtract('days', i);
+            for (var i = 30; i >= 1; i--) {
+                var time = moment().subtract(i, 'days');
                 time = time.format('YYYY-MM-DD');
                 xDataDays.push(time);
             }
@@ -576,7 +600,7 @@
         /////////////////////////////////////////////////////////////////////////////////////
         //图表类型切换
         $("#lineType").click(function(e) {
-            e.preventDefault();
+            // e.preventDefault();
             var show = false;
             var disabled = true;
             if (dayCount > 15) {
@@ -627,7 +651,7 @@
 
         });
         $("#barType").click(function(e) {
-            e.preventDefault();
+            // e.preventDefault();
             var show = false;
             var disabled = true;
             if (dayCount > 15) {
@@ -690,7 +714,7 @@
             pageList: [5, 10, 25, 50, 100], //可供选择的每页的行数
             striped: true,
             // toolbar: '#toolbar',
-            showExport: true, // 导出（第三方）
+            // showExport: true, // 导出（第三方）
             exportDataType: 'all', // 导出参数
             exportTypes: ['excel'], // 导出文件类型
             exportOptions: { // 导出选项
@@ -745,6 +769,45 @@
 
         var data = [];
         setListData(data, xDataDays, yDataDays, dayCount);
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        //初始化图表2
+        var myChart2 = echarts.init(document.getElementById('echarts_time_users'), 'shine');
+        myChart2.showLoading();
+        window.setTimeout(function() {
+            myChart2.hideLoading();
+            myChart2.setOption({
+                tooltip: {
+                    trigger: 'axis',
+                },
+                xAxis: {
+                    type: 'time',
+                    splitLine: {
+                        show: false
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    boundaryGap: [0, '100%'],
+                    splitLine: {
+                        show: false
+                    }
+                },
+                series: [{
+                    name: '总客流数',
+                    type: 'line',
+                    showSymbol: false,
+                    hoverAnimation: false,
+                    data: [{
+                        name: '1997/09/12',
+                        value: [moment().format('YYYY-MM-DD HH:mm:SS'), '200']
+                    }, {
+                        name: '1997/09/13',
+                        value: ['1997/09/13', '300']
+                    }]
+                }]
+            });
+        }, 500);
     })
     //////////////////////////////////////////////////////////////////////////////////////////////////
     // 获取值用随机数

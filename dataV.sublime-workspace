@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"font",
+				"font-size"
+			],
+			[
+				"add",
+				"addClass〔function〕"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"all",
+				"allUsers"
+			],
+			[
 				"day",
 				"dayCount〔variable〕"
 			],
@@ -74,10 +90,6 @@
 			[
 				"vl",
 				"vlan.html"
-			],
-			[
-				"add",
-				"addSSID"
 			],
 			[
 				"margin",
@@ -155,7 +167,7 @@
 			"file": "html/index.html",
 			"settings":
 			{
-				"buffer_size": 38505,
+				"buffer_size": 40892,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -249,7 +261,7 @@
 	},
 	"console":
 	{
-		"height": 171.0,
+		"height": 216.0,
 		"history":
 		[
 			"ggg",
@@ -422,6 +434,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"format",
+			"echarts_users",
+			"label",
+			"locale",
+			"moment",
+			"pieType",
+			"option3",
+			"pieType",
+			"barType",
+			"pieType",
+			"lineType",
 			"dayCount",
 			"趋势",
 			"setOption",
@@ -529,15 +552,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 38505,
+						"buffer_size": 40892,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								35100,
-								35100
+								38903,
+								38903
 							]
 						],
 						"settings":
@@ -550,7 +573,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 20524.0,
+						"translation.y": 22452.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
