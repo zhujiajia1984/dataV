@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"set",
+				"setOption"
+			],
+			[
+				"line",
+				"lineType2"
+			],
+			[
 				"font",
 				"font-size"
 			],
@@ -22,10 +30,6 @@
 			[
 				"day",
 				"dayCount〔variable〕"
-			],
-			[
-				"line",
-				"lineType"
 			],
 			[
 				"parse",
@@ -164,10 +168,19 @@
 	"buffers":
 	[
 		{
+			"file": "html/userProperty.html",
+			"settings":
+			{
+				"buffer_size": 19211,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "html/index.html",
 			"settings":
 			{
-				"buffer_size": 40892,
+				"buffer_size": 41507,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -282,10 +295,16 @@
 	"expanded_folders":
 	[
 		"/D/Project/web/dataV",
+		"/D/Project/web/dataV/assets/global",
+		"/D/Project/web/dataV/assets/global/plugins",
+		"/D/Project/web/dataV/assets/global/plugins/iconfont",
 		"/D/Project/web/dataV/html"
 	],
 	"file_history":
 	[
+		"/D/Project/web/dataV/html/userNumDetail.html",
+		"/D/Project/web/dataV/html/index.html",
+		"/D/Project/web/dataV/html/userProperty.html",
 		"/D/Project/web/dataV/assets/global/plugins/echarts/theme/shine.js",
 		"/D/Project/web/bootstrap-daterangepicker/demo.html",
 		"/D/Project/web/frameMini2/html_mini/vlan.html",
@@ -410,10 +429,7 @@
 		"/D/React/reactJs/public/components/Home.js",
 		"/D/React/reactJs/server.js",
 		"/D/React/reactJs/src/components/about.js",
-		"/D/React/reactJs/src/components/home.js",
-		"/D/React/reactJs/src/components/Home.js",
-		"/D/React/reactJs/src/index.html",
-		"/D/React/reactJs/src/npm-debug.log"
+		"/D/React/reactJs/src/components/home.js"
 	],
 	"find":
 	{
@@ -434,6 +450,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"operateEvents",
+			"totalUsers",
+			"legend",
+			"moment().add",
+			"总客流",
+			"访客",
+			"实时访客",
+			"formatter",
+			"unshift",
+			"1000",
+			"ran",
+			"rando",
+			"rad",
 			"format",
 			"echarts_users",
 			"label",
@@ -537,7 +566,7 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
@@ -548,35 +577,63 @@
 			[
 				{
 					"buffer": 0,
-					"file": "html/index.html",
+					"file": "html/userProperty.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 40892,
+						"buffer_size": 19211,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								38903,
-								38903
+								10875,
+								10875
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 22452.0,
+						"translation.y": 4988.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "html/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 41507,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								37630,
+								37941
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 24029.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
