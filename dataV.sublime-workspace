@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"echarts_userSex",
+				"echarts_userSexHis"
+			],
+			[
+				"has",
+				"hasClass〔function〕"
+			],
+			[
+				"today",
+				"todayTotalArea"
+			],
+			[
+				"city",
+				"cityArea"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
 				"set",
 				"setOption"
 			],
@@ -56,10 +88,6 @@
 				"active"
 			],
 			[
-				"max",
-				"maxConSwitch"
-			],
-			[
 				"clou",
 				"cloudAddressContent"
 			],
@@ -78,10 +106,6 @@
 			[
 				"remv",
 				"removeClass〔function〕"
-			],
-			[
-				"back",
-				"background-color"
 			],
 			[
 				"label",
@@ -171,7 +195,7 @@
 			"file": "html/userProperty.html",
 			"settings":
 			{
-				"buffer_size": 19211,
+				"buffer_size": 33413,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -180,7 +204,7 @@
 			"file": "html/index.html",
 			"settings":
 			{
-				"buffer_size": 41507,
+				"buffer_size": 42628,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -297,13 +321,14 @@
 		"/D/Project/web/dataV",
 		"/D/Project/web/dataV/assets/global",
 		"/D/Project/web/dataV/assets/global/plugins",
-		"/D/Project/web/dataV/assets/global/plugins/iconfont",
+		"/D/Project/web/dataV/assets/global/plugins/echarts",
+		"/D/Project/web/dataV/assets/global/plugins/echarts/theme",
 		"/D/Project/web/dataV/html"
 	],
 	"file_history":
 	[
-		"/D/Project/web/dataV/html/userNumDetail.html",
 		"/D/Project/web/dataV/html/index.html",
+		"/D/Project/web/dataV/html/userNumDetail.html",
 		"/D/Project/web/dataV/html/userProperty.html",
 		"/D/Project/web/dataV/assets/global/plugins/echarts/theme/shine.js",
 		"/D/Project/web/bootstrap-daterangepicker/demo.html",
@@ -433,7 +458,7 @@
 	],
 	"find":
 	{
-		"height": 44.0
+		"height": 45.0
 	},
 	"find_in_files":
 	{
@@ -450,6 +475,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getRandomYData",
+			"oldUsers",
+			"newUsers",
+			"allUsers",
+			"splitNumber",
+			"echarts_userSexHis",
+			"echarts_userSexHisx",
+			"getRandomYData",
+			"btnLast7Day",
+			"moment",
+			"dateTimeSel",
+			"echarts_userSex",
+			"echarts_users",
+			"echarts_time_users",
+			"btnLast7Day",
+			"myChart",
+			"e.",
+			"上网用户统计",
+			"boundaryGap",
+			"全屏",
+			"AP数据",
+			"grey",
 			"operateEvents",
 			"totalUsers",
 			"legend",
@@ -560,6 +607,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"unknowns",
+			"womans",
+			"mans",
 			"vlan.html",
 			"取消"
 		],
@@ -581,26 +631,28 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19211,
+						"buffer_size": 33413,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10875,
-								10875
+								26379,
+								26379
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4988.0,
+						"translation.y": 16150.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -612,25 +664,26 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 41507,
+						"buffer_size": 42628,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								37630,
-								37941
+								22146,
+								22338
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 24029.0,
+						"translation.y": 12325.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -641,7 +694,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 36.0
+		"height": 37.0
 	},
 	"input":
 	{
@@ -678,7 +731,7 @@
 	"project": "dataV.sublime-project",
 	"replace":
 	{
-		"height": 68.0
+		"height": 84.0
 	},
 	"save_all_on_build": true,
 	"select_file":
