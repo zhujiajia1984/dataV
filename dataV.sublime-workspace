@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"user",
+				"userSexDetail.html"
+			],
+			[
+				"j",
+				"jvectormap/"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"wo",
+				"womans"
+			],
+			[
 				"echarts_userSex",
 				"echarts_userSexHis"
 			],
@@ -22,10 +38,6 @@
 			[
 				"border-co",
 				"border-color"
-			],
-			[
-				"back",
-				"background-color"
 			],
 			[
 				"max",
@@ -195,7 +207,7 @@
 			"file": "html/userProperty.html",
 			"settings":
 			{
-				"buffer_size": 33413,
+				"buffer_size": 62539,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -298,7 +310,7 @@
 	},
 	"console":
 	{
-		"height": 216.0,
+		"height": 407.0,
 		"history":
 		[
 			"ggg",
@@ -327,6 +339,9 @@
 	],
 	"file_history":
 	[
+		"/D/Project/web/dataV/html/userSexDetail.html",
+		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill - 副本.js",
+		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill.js",
 		"/D/Project/web/dataV/html/index.html",
 		"/D/Project/web/dataV/html/userNumDetail.html",
 		"/D/Project/web/dataV/html/userProperty.html",
@@ -451,14 +466,11 @@
 		"/D/React/reactJs/public/index.html",
 		"/D/React/reactJs/src/App2.js",
 		"/C/Users/zjj/Desktop/oui.txt",
-		"/D/React/reactJs/public/components/Home.js",
-		"/D/React/reactJs/server.js",
-		"/D/React/reactJs/src/components/about.js",
-		"/D/React/reactJs/src/components/home.js"
+		"/D/React/reactJs/public/components/Home.js"
 	],
 	"find":
 	{
-		"height": 45.0
+		"height": 49.0
 	},
 	"find_in_files":
 	{
@@ -475,6 +487,59 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"btnLast7Day",
+			"dateTimeSel",
+			"id",
+			"cityArea",
+			"echarts_userRegion2",
+			"echarts_userSex2",
+			"echarts_userRegion",
+			"yAxis:",
+			"按城市",
+			"resize",
+			"flag_tab2",
+			"myChart2",
+			"scale",
+			"myChart2",
+			"g",
+			"echarts_userRegion",
+			"tab2",
+			"echarts_userRegion",
+			"shenArea",
+			"上网用户性别",
+			"归属地",
+			"operateEvents",
+			"setListData",
+			"mytable",
+			"echarts_userSex2",
+			"TAB",
+			"window.chartType == 'bar'",
+			"setPieChart",
+			"legend",
+			"setLineChart",
+			"legend",
+			"setLineChart",
+			"初始化",
+			"setLineChart",
+			"setBarChart",
+			"mans",
+			"未知",
+			"unknowns",
+			"未知",
+			"myChart3",
+			"myChart",
+			"toolbox",
+			"setPieChart",
+			"setLineChart",
+			"tooltip",
+			"btnLast7Day",
+			"dateTimeSel",
+			"dayCount",
+			"btnLast30Day",
+			"formatter",
+			"label",
+			"setLineChart",
+			"echarts_time_users",
 			"getRandomYData",
 			"oldUsers",
 			"newUsers",
@@ -549,57 +614,7 @@
 			"新增SSID",
 			"devModeSel",
 			"iconHeader",
-			"badge badge-default",
-			"iconHeader",
-			"badge badge-default",
-			"iconHeader",
-			"badge badge-default",
-			"iconHeader",
-			"badge badge-default",
-			"iconHeader",
-			"badge badge-default",
-			"iconHeader",
-			"badge badge-default",
-			"iconHeader",
-			"badge badge-default",
-			"devmode",
-			"badge badge-default",
-			"icon-",
-			"iconfont",
-			"nav navbar-nav pull-right",
-			"wifisetting.html",
-			"over",
-			"overla",
-			"blockui",
-			"toolbar",
-			"operateEvents",
-			"data-target",
-			"modal-backdrop fade in",
-			"showLoading",
-			"delSSID",
-			"ssid",
-			"uncheckAll",
-			"checkAll",
-			"复位",
-			"CPU占用率",
-			"vlan",
-			"operateEvents",
-			"保存",
-			"新增SSID",
-			"已连接终端",
-			"arrow",
-			">\n",
-			"css",
-			"\"codeintel_selected_catalogs",
-			"analytics.js",
-			"update",
-			"add",
-			"editable",
-			"homepage",
-			"></",
-			"BrowserRouter",
-			"BrowserRoutern",
-			"router"
+			"badge badge-default"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -607,6 +622,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"来源地",
 			"unknowns",
 			"womans",
 			"mans",
@@ -631,15 +647,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 33413,
+						"buffer_size": 62539,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								26379,
-								26379
+								38483,
+								38483
 							]
 						],
 						"settings":
@@ -652,7 +668,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 16150.0,
+						"translation.y": 22724.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -671,19 +687,20 @@
 						"selection":
 						[
 							[
-								22146,
-								22338
+								42016,
+								42016
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 12325.0,
+						"translation.y": 20729.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -694,7 +711,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 37.0
+		"height": 41.0
 	},
 	"input":
 	{
@@ -731,7 +748,7 @@
 	"project": "dataV.sublime-project",
 	"replace":
 	{
-		"height": 84.0
+		"height": 92.0
 	},
 	"save_all_on_build": true,
 	"select_file":
