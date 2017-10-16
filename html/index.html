@@ -214,14 +214,6 @@
                                                                 <a href="#" id="history_explain"><i class="fa fa-question-circle font-grey-salsa" style="font-size: 20px;"></i></a>
                                                             </form>
                                                         </div>
-                                                        <div class="actions">
-                                                            <div class="btn-group btn-group-devided" data-toggle="buttons">
-                                                                <label class="btn btn-transparent blue-oleo btn-no-border btn-outline btn-circle btn-sm active" id="barType">
-                                                                    <input type="radio" name="options" class="toggle" id="option1">柱状图</label>
-                                                                <label class="btn btn-transparent blue-oleo btn-no-border btn-outline btn-circle btn-sm" id="lineType">
-                                                                    <input type="radio" name="options" class="toggle" id="option2">折线图</label>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="portlet-body">
                                                         <div id="echarts_users" style="height:400px;margin-bottom: 20px;"></div>
@@ -281,6 +273,7 @@
     <script src="../assets/global/plugins/echarts/theme/shine.js" type="text/javascript"></script>
     <script type="text/javascript">
     $(document).ready(function() {
+        window.chartType == 'bar';
         ///////////////////////////////////////////////////////////////////////////////////////
         // 提示
         $("#time_explain").tooltip({
@@ -334,33 +327,11 @@
 
             // var yDataDays = {};
             yDataDays = getRandomYData(yDataDays, dayCount);
-            var show = false;
-            var disabled = true;
-            if (dayCount > 15) {
-                show = true;
-                disabled = false;
+            if (window.chartType == 'bar') {
+                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
+            } else {
+                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
             }
-            myChart.setOption({
-                dataZoom: [{
-                    show: show,
-                    start: 0,
-                    end: 100,
-                }, {
-                    disabled: disabled,
-                    start: 0,
-                    end: 100,
-                }],
-                xAxis: {
-                    data: xDataDays,
-                },
-                series: [{
-                    data: yDataDays.allUsers,
-                }, {
-                    data: yDataDays.newUsers,
-                }, {
-                    data: yDataDays.oldUsers,
-                }, ]
-            });
             var data = [];
             setListData(data, xDataDays, yDataDays, dayCount);
         });
@@ -379,91 +350,7 @@
             newUsers: [120, 10, 150, 200, 40, 200, 70],
             oldUsers: [80, 90, 150, 80, 140, 50, 80],
         }
-        var option = {
-            title: {
-                text: 'title',
-                show: false,
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow', // line/shadow/cross
-                }
-            },
-            dataZoom: [{ // 这个dataZoom组件，默认控制x轴。
-                    type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
-                    start: 0, // 左边在 10% 的位置。
-                    end: 100, // 右边在 60% 的位置。
-                    show: false,
-                },
-                { // 这个dataZoom组件，也控制x轴。
-                    type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
-                    start: 0, // 左边在 10% 的位置。
-                    end: 100, // 右边在 60% 的位置。
-                    disabled: true,
-                }
-            ],
-            legend: {
-                type: 'plain',
-                show: true,
-                left: 'center',
-                top: 0,
-                data: ['总客流', '新客', '老客']
-            },
-            xAxis: {
-                type: 'category',
-                data: xDataDays,
-                name: '日期',
-                // boundaryGap: false,
-            },
-            yAxis: {
-                type: 'value',
-                name: '人数',
-                splitNumber: 3,
-                boundaryGap: ['0', '20%'],
-            },
-            series: [{
-                name: '总客流',
-                type: 'bar', // bar/line
-                // stack: '123',
-                data: yDataDays.allUsers,
-                // label: {
-                //     normal: {
-                //         show: true,
-                //         formatter: '{c}'
-                //     }
-                // }
-            }, {
-                name: '新客',
-                type: 'bar',
-                barWidth: '10%',
-                stack: '总客流', // 总客流/其他
-                data: yDataDays.newUsers,
-                // label: {
-                //     normal: {
-                //         show: true,
-                //         formatter: '{c}'
-                //     }
-                // }
-            }, {
-                name: '老客',
-                type: 'bar',
-                barWidth: '10%',
-                stack: '总客流',
-                data: yDataDays.oldUsers,
-                // label: {
-                //     normal: {
-                //         show: true,
-                //         formatter: '{c}'
-                //     }
-                // }
-            }, ]
-        };
-        myChart.showLoading();
-        window.setTimeout(function() {
-            myChart.hideLoading();
-            myChart.setOption(option);
-        }, 500);
+        setBarChart1(myChart, xDataDays, yDataDays, dayCount);
 
         ///////////////////////////////////////////////////////////////////////////////////////
         // 日期选择按钮
@@ -488,29 +375,11 @@
                 newUsers: [120, 10, 150, 200, 40, 200, 70],
                 oldUsers: [80, 90, 150, 80, 140, 50, 80],
             }
-            myChart.setOption({
-                xAxis: {
-                    data: xDataDays,
-                },
-                dataZoom: [{
-                    type: 'slider',
-                    show: false,
-                    start: 0,
-                    end: 100,
-                }, {
-                    type: 'inside',
-                    disabled: true,
-                    start: 0,
-                    end: 100,
-                }],
-                series: [{
-                    data: yDataDays.allUsers,
-                }, {
-                    data: yDataDays.newUsers,
-                }, {
-                    data: yDataDays.oldUsers,
-                }, ]
-            });
+            if (window.chartType == 'bar') {
+                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
+            } else {
+                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
+            }
             var data = [];
             setListData(data, xDataDays, yDataDays, dayCount);
         });
@@ -529,84 +398,19 @@
                 xDataDays.push(time);
             }
             yDataDays = getRandomYData(yDataDays, 30);
-            myChart.setOption({
-                dataZoom: [{
-                    type: 'slider',
-                    show: true,
-                    start: 0,
-                    end: 100,
-                }, {
-                    type: 'inside',
-                    disabled: false,
-                    start: 0,
-                    end: 100,
-                }],
-                xAxis: {
-                    data: xDataDays,
-                },
-                series: [{
-                    data: yDataDays.allUsers,
-                }, {
-                    data: yDataDays.newUsers,
-                }, {
-                    data: yDataDays.oldUsers,
-                }, ]
-            });
+            if (window.chartType == 'bar') {
+                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
+            } else {
+                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
+            }
             var data = [];
             setListData(data, xDataDays, yDataDays, dayCount);
         });
         /////////////////////////////////////////////////////////////////////////////////////
         //图表类型切换
         $("#lineType").click(function(e) {
-            // e.preventDefault();
-            var show = false;
-            var disabled = true;
-            if (dayCount > 15) {
-                show = true;
-                disabled = false;
-            }
-            myChart.setOption({
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'line', // line/shadow/cross
-                    }
-                },
-                dataZoom: [{
-                    type: 'slider',
-                    show: show,
-                    start: 0,
-                    end: 100,
-                }, {
-                    type: 'inside',
-                    disabled: disabled,
-                    start: 0,
-                    end: 100,
-                }],
-                xAxis: {
-                    type: 'category',
-                    data: xDataDays,
-                    name: '日期',
-                    boundaryGap: false,
-                },
-                series: [{
-                    name: '总客流',
-                    type: 'line', // bar/line
-                    data: yDataDays.allUsers,
-                    // areaStyle: { normal: {} },
-                }, {
-                    name: '新客',
-                    type: 'line',
-                    data: yDataDays.newUsers,
-                    // areaStyle: { normal: {} },
-                }, {
-                    name: '老客',
-                    type: 'line',
-                    data: yDataDays.oldUsers,
-                    // areaStyle: { normal: {} },
-                }, ]
-            });
-
+            e.preventDefault();
+            setLineChart1(myChart, xDataDays, yDataDays, dayCount);
         });
         $("#barType").click(function(e) {
             // e.preventDefault();
@@ -940,6 +744,192 @@
             e.preventDefault();
             window.location.href = "./userNumDetail.html";
         },
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    // 切换为柱状图
+    function setBarChart1(myChart, xDataDays, yDataDays, dayCount) {
+        window.chartType = 'bar';
+        var show = false;
+        var disabled = true;
+        if (dayCount > 15) {
+            show = true;
+            disabled = false;
+        }
+        myChart.clear();
+        myChart.showLoading();
+        window.setTimeout(function() {
+            myChart.hideLoading();
+            myChart.setOption({
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow', // line/shadow/cross
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    itemSize: 20,
+                    itemGap: 15,
+                    feature: {
+                        myBar: {
+                            show: true,
+                            title: '柱状图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/bar.png',
+                            onclick: function() {
+                                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
+                            }
+                        },
+                        myLine: {
+                            show: true,
+                            title: '折线图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/line1.png',
+                            onclick: function() {
+                                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
+                            }
+                        },
+                    }
+                },
+                dataZoom: [{ // 这个dataZoom组件，默认控制x轴。
+                        type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                        start: 0, // 左边在 10% 的位置。
+                        end: 100, // 右边在 60% 的位置。
+                        show: false,
+                    },
+                    { // 这个dataZoom组件，也控制x轴。
+                        type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
+                        start: 0, // 左边在 10% 的位置。
+                        end: 100, // 右边在 60% 的位置。
+                        disabled: true,
+                    }
+                ],
+                legend: {
+                    type: 'plain',
+                    show: true,
+                    left: 'center',
+                    top: 0,
+                    data: ['总客流', '新客', '老客']
+                },
+                xAxis: {
+                    type: 'category',
+                    data: xDataDays,
+                    name: '日期',
+                    // boundaryGap: false,
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '人数',
+                    splitNumber: 3,
+                    boundaryGap: ['0', '20%'],
+                },
+                series: [{
+                    name: '总客流',
+                    type: 'bar', // bar/line
+                    // stack: '123',
+                    data: yDataDays.allUsers,
+                }, {
+                    name: '新客',
+                    type: 'bar',
+                    barWidth: '10%',
+                    stack: '总客流', // 总客流/其他
+                    data: yDataDays.newUsers,
+                }, {
+                    name: '老客',
+                    type: 'bar',
+                    barWidth: '10%',
+                    stack: '总客流',
+                    data: yDataDays.oldUsers,
+                }, ]
+            });
+        }, 1000)
+
+    }
+    ////////////////////////////////////////////////////////////////////////
+    // 切换为折线图setLineChart
+    function setLineChart1(myChart, xDataDays, yDataDays, dayCount) {
+        window.chartType = 'line';
+        var show = false;
+        var disabled = true;
+        if (dayCount > 15) {
+            show = true;
+            disabled = false;
+        }
+        myChart.clear();
+        myChart.showLoading();
+        window.setTimeout(function() {
+            myChart.hideLoading();
+            myChart.setOption({
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'line', // line/shadow/cross
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    itemSize: 20,
+                    itemGap: 15,
+                    feature: {
+                        myBar: {
+                            show: true,
+                            title: '柱状图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/bar1.png',
+                            onclick: function() {
+                                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
+                            }
+                        },
+                        myLine: {
+                            show: true,
+                            title: '折线图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/line.png',
+                            onclick: function() {
+                                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
+                            }
+                        },
+                    }
+                },
+                dataZoom: [{
+                    type: 'slider',
+                    show: show,
+                    start: 0,
+                    end: 100,
+                }, {
+                    type: 'inside',
+                    disabled: disabled,
+                    start: 0,
+                    end: 100,
+                }],
+                xAxis: {
+                    type: 'category',
+                    data: xDataDays,
+                    name: '日期',
+                    boundaryGap: false,
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '人数',
+                    splitNumber: 3,
+                    boundaryGap: ['0', '20%'],
+                },
+                series: [{
+                    name: '总客流',
+                    type: 'line', // bar/line
+                    data: yDataDays.allUsers,
+                    // areaStyle: { normal: {} },
+                }, {
+                    name: '新客',
+                    type: 'line',
+                    data: yDataDays.newUsers,
+                    // areaStyle: { normal: {} },
+                }, {
+                    name: '老客',
+                    type: 'line',
+                    data: yDataDays.oldUsers,
+                    // areaStyle: { normal: {} },
+                }, ]
+            });
+        }, 1000)
+
     }
     </script>
 </body>

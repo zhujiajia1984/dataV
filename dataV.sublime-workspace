@@ -5,15 +5,31 @@
 		[
 			[
 				"user",
-				"userSexDetail.html"
-			],
-			[
-				"j",
-				"jvectormap/"
+				"userProperty.html"
 			],
 			[
 				"back",
 				"background-color"
+			],
+			[
+				"setS",
+				"setShenListData"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"Ra",
+				"RandomNumBoth"
+			],
+			[
+				"jquery-jvectormap",
+				"jquery-jvectormap-cn-mill.js"
+			],
+			[
+				"j",
+				"jvectormap/"
 			],
 			[
 				"wo",
@@ -207,18 +223,27 @@
 			"file": "html/userProperty.html",
 			"settings":
 			{
-				"buffer_size": 62539,
+				"buffer_size": 73566,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "html/index.html",
+			"file": "html/userCityDetail.html",
 			"settings":
 			{
-				"buffer_size": 42628,
+				"buffer_size": 18239,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "html/userSexDetail.html",
+			"settings":
+			{
+				"buffer_size": 17096,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -339,10 +364,13 @@
 	],
 	"file_history":
 	[
+		"/D/Project/web/dataV/html/userCityDetail.html",
+		"/D/Project/web/dataV/html/cityCode.txt",
+		"/D/Project/web/dataV/html/index.html",
+		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill.js",
+		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-china-en.js",
 		"/D/Project/web/dataV/html/userSexDetail.html",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill - 副本.js",
-		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill.js",
-		"/D/Project/web/dataV/html/index.html",
 		"/D/Project/web/dataV/html/userNumDetail.html",
 		"/D/Project/web/dataV/html/userProperty.html",
 		"/D/Project/web/dataV/assets/global/plugins/echarts/theme/shine.js",
@@ -463,14 +491,11 @@
 		"/D/React/reactJs/public/components/Topics.js",
 		"/D/React/reactJs/src/App.js",
 		"/D/React/reactJs/public/App.js",
-		"/D/React/reactJs/public/index.html",
-		"/D/React/reactJs/src/App2.js",
-		"/C/Users/zjj/Desktop/oui.txt",
-		"/D/React/reactJs/public/components/Home.js"
+		"/D/React/reactJs/public/index.html"
 	],
 	"find":
 	{
-		"height": 49.0
+		"height": 53.0
 	},
 	"find_in_files":
 	{
@@ -487,6 +512,37 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"operateEvents",
+			"cityArea3",
+			"shenArea3",
+			"cityArea3",
+			"shenArea3",
+			"shenArea",
+			"green",
+			"font-",
+			"setListData",
+			"mytable2",
+			"myta",
+			"jvm_map.series.regions[0].setScale(['#DEEBF7', '#08519C']);",
+			"矢量",
+			"，",
+			"”",
+			"“",
+			"Fujian",
+			"RandomNumBoth",
+			"getr",
+			"jvm_map",
+			"map",
+			"山西",
+			"陕西",
+			"山西",
+			"北京",
+			"name",
+			"台湾",
+			"矢量",
+			"…6,3.0703",
+			"active",
+			"矢量",
 			"btnLast7Day",
 			"dateTimeSel",
 			"id",
@@ -583,38 +639,7 @@
 			"pieType",
 			"option3",
 			"pieType",
-			"barType",
-			"pieType",
-			"lineType",
-			"dayCount",
-			"趋势",
-			"setOption",
-			"data",
-			"setStartDate",
-			"demo",
-			"dateTimeSel",
-			"最优距离",
-			"最优",
-			"vlan",
-			"switchCtl",
-			"cutstr",
-			"datatable",
-			"cookie",
-			"trahs",
-			"switchCtl",
-			"operateEvents",
-			"a:first",
-			"tab",
-			"max",
-			"maxConSwitch",
-			"外网设置",
-			"网络设置",
-			"cloudAddressGroup",
-			"已连接",
-			"新增SSID",
-			"devModeSel",
-			"iconHeader",
-			"badge badge-default"
+			"barType"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -622,6 +647,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"\"",
 			"来源地",
 			"unknowns",
 			"womans",
@@ -638,7 +664,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -647,15 +673,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 62539,
+						"buffer_size": 73566,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								38483,
-								38483
+								56131,
+								56149
 							]
 						],
 						"settings":
@@ -668,42 +694,72 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 22724.0,
+						"translation.y": 53573.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "html/index.html",
+					"file": "html/userCityDetail.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 42628,
+						"buffer_size": 18239,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								42016,
-								42016
+								8882,
+								8882
 							]
 						],
 						"settings":
 						{
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
+							"auto_complete": false,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 20729.0,
+						"translation.y": 6393.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "html/userSexDetail.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17096,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8887,
+								8887
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4329.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -711,7 +767,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 41.0
+		"height": 45.0
 	},
 	"input":
 	{
@@ -748,7 +804,7 @@
 	"project": "dataV.sublime-project",
 	"replace":
 	{
-		"height": 92.0
+		"height": 100.0
 	},
 	"save_all_on_build": true,
 	"select_file":
