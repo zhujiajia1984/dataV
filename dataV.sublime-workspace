@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"setlin",
+				"setLineHisCharts"
+			],
+			[
+				"setBar",
+				"setBarHisCharts〔function〕"
+			],
+			[
+				"echarts",
+				"echarts_userTimeToDay"
+			],
+			[
+				"setLine",
+				"setLineChart1〔class〕"
+			],
+			[
 				"user",
 				"userProperty.html"
 			],
@@ -220,28 +236,10 @@
 	"buffers":
 	[
 		{
-			"file": "html/userProperty.html",
+			"file": "html/userTime.html",
 			"settings":
 			{
-				"buffer_size": 73566,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "html/userCityDetail.html",
-			"settings":
-			{
-				"buffer_size": 18239,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "html/userSexDetail.html",
-			"settings":
-			{
-				"buffer_size": 17096,
+				"buffer_size": 31031,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -364,15 +362,15 @@
 	],
 	"file_history":
 	[
-		"/D/Project/web/dataV/html/userCityDetail.html",
-		"/D/Project/web/dataV/html/cityCode.txt",
+		"/D/Project/web/dataV/html/userProperty.html",
 		"/D/Project/web/dataV/html/index.html",
+		"/D/Project/web/dataV/html/userCityDetail.html",
+		"/D/Project/web/dataV/html/userNumDetail.html",
+		"/D/Project/web/dataV/html/userSexDetail.html",
+		"/D/Project/web/dataV/html/cityCode.txt",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill.js",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-china-en.js",
-		"/D/Project/web/dataV/html/userSexDetail.html",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill - 副本.js",
-		"/D/Project/web/dataV/html/userNumDetail.html",
-		"/D/Project/web/dataV/html/userProperty.html",
 		"/D/Project/web/dataV/assets/global/plugins/echarts/theme/shine.js",
 		"/D/Project/web/bootstrap-daterangepicker/demo.html",
 		"/D/Project/web/frameMini2/html_mini/vlan.html",
@@ -512,6 +510,51 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"dateTimeSel",
+			"btnLast30Day",
+			"xDataDays.push",
+			"btnLast30Day",
+			"btnLast7Day",
+			"实时客流",
+			"setBarHisCharts",
+			"yDataDays",
+			"getRandomYData",
+			"xDataDays",
+			"yDataDays",
+			"xDataDays",
+			"setLineHisCharts",
+			"echarts_userTimeHis",
+			"window.chartType",
+			"dayCount",
+			"yDataDays",
+			"xDataDays",
+			"echarts_userTimeHis",
+			"circle",
+			"itemStyle",
+			"format",
+			"moment().for",
+			"moment",
+			"resize",
+			"每",
+			"初始化",
+			"usertime",
+			"w.chartType",
+			"window.",
+			"window.barType",
+			"btnLast7Day",
+			"setLineChart",
+			"setBarChart1",
+			"初始化",
+			"lineType",
+			"linetye",
+			"linetye\nlineType",
+			"linetye",
+			"setLineChart",
+			"linetype",
+			"xDataDays",
+			"barType",
+			"setBarChart",
+			"barType",
 			"operateEvents",
 			"cityArea3",
 			"shenArea3",
@@ -594,52 +637,7 @@
 			"btnLast30Day",
 			"formatter",
 			"label",
-			"setLineChart",
-			"echarts_time_users",
-			"getRandomYData",
-			"oldUsers",
-			"newUsers",
-			"allUsers",
-			"splitNumber",
-			"echarts_userSexHis",
-			"echarts_userSexHisx",
-			"getRandomYData",
-			"btnLast7Day",
-			"moment",
-			"dateTimeSel",
-			"echarts_userSex",
-			"echarts_users",
-			"echarts_time_users",
-			"btnLast7Day",
-			"myChart",
-			"e.",
-			"上网用户统计",
-			"boundaryGap",
-			"全屏",
-			"AP数据",
-			"grey",
-			"operateEvents",
-			"totalUsers",
-			"legend",
-			"moment().add",
-			"总客流",
-			"访客",
-			"实时访客",
-			"formatter",
-			"unshift",
-			"1000",
-			"ran",
-			"rando",
-			"rad",
-			"format",
-			"echarts_users",
-			"label",
-			"locale",
-			"moment",
-			"pieType",
-			"option3",
-			"pieType",
-			"barType"
+			"setLineChart"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -664,99 +662,36 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "html/userProperty.html",
+					"file": "html/userTime.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 73566,
+						"buffer_size": 31031,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								56131,
-								56149
+								20863,
+								20863
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
+							"open_with_edit": true,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 53573.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "html/userCityDetail.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18239,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8882,
-								8882
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 6393.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "html/userSexDetail.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17096,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8887,
-								8887
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4329.0,
+						"translation.y": 17633.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

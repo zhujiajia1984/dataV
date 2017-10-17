@@ -22,16 +22,9 @@
     <link href="../assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" type="text/css" rel="stylesheet">
     <link href="../assets/global/plugins/bootstrap-sweetalert/sweetalert.css" type="text/css" rel="stylesheet">
     <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
-    .tooltip-inner {
-        max-width: initial;
-        text-align: left;
-        background-color: #2F353B;
-    }
 
-    .tooltip.top .tooltip-arrow {
-        border-top-color: #2F353B;
-    }
     </style>
 </head>
 <!-- END HEAD -->
@@ -112,11 +105,10 @@
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item start open">
+                                <li class="nav-item start">
                                     <a href="index.html" class="nav-link ">
                                     <i class="iconfont icon-xinfangke-copy1" style="font-size: 20px;"></i>
                                     <span class="title">新老访客统计</span>
-                                    <span class="selected"></span>
                                 </a>
                                 </li>
                             </ul>
@@ -129,10 +121,11 @@
                                 </li>
                             </ul>
                             <ul class="sub-menu">
-                                <li class="nav-item start">
+                                <li class="nav-item start open">
                                     <a href="userTime.html" class="nav-link ">
                                     <i class="iconfont icon-time" style="font-size: 20px;"></i>
                                     <span class="title">访问时间统计</span>
+                                    <span class="selected"></span>
                                 </a>
                                 </li>
                             </ul>
@@ -157,14 +150,14 @@
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>新老访客统计</span>
+                                <span>访问时间统计</span>
                             </li>
                         </ul>
                     </div>
                     <!-- END PAGE BAR -->
                     <!-- BEGIN PAGE TITLE-->
-                    <h1 class="page-title">新老访客统计
-                        <small>对新访客和老访客进行统计</small>
+                    <h1 class="page-title">访问时间统计
+                        <small>对用户访问时间点和时长进行统计</small>
                     </h1>
                     <!-- END PAGE TITLE-->
                     <div class="row">
@@ -172,30 +165,28 @@
                             <div class="tabbable-line boxless tabbable-reversed">
                                 <ul class="nav nav-tabs">
                                     <li class="active">
-                                        <a href="#tab1" data-toggle="tab"> 融合数据 </a>
+                                        <a href="#tab1" data-toggle="tab" id="flag_tab1"> 融合数据 </a>
                                     </li>
-                                    <li>
-                                        <a href="#tab2" data-toggle="tab"> AP数据 </a>
+                                    <li class="">
+                                        <a href="#tab2" data-toggle="tab" id="flag_tab2"> AP数据 </a>
                                     </li>
-                                    <li>
-                                        <a href="#tab3" data-toggle="tab"> 探针数据 </a>
+                                    <li class="">
+                                        <a href="#tab3" data-toggle="tab" id="flag_tab3"> 探针数据 </a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab1">
-                                        <div class="clearfix"></div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="portlet light bordered">
                                                     <div class="portlet-title">
                                                         <div class="caption">
-                                                            <span class="caption-subject bold uppercase font-dark">实时统计</span>
-                                                            <span class="caption-helper" id="updateTimeCtl">更新时间：2017/9/29 11:23:25</span>
-                                                            <a href="#" id="time_explain"><i class="fa fa-question-circle font-grey-salsa" style="font-size: 20px;"></i></a>
+                                                            <span class="caption-subject bold uppercase font-dark">今日整点访客统计</span>
+                                                            <span class="caption-helper" id="updateTimeCtl">每一小时更新一次</span>
                                                         </div>
                                                     </div>
                                                     <div class="portlet-body">
-                                                        <div id="echarts_time_users" style="height:400px;"></div>
+                                                        <div id="echarts_userTimeToDay" style="height:400px;"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -207,10 +198,10 @@
                                                         <div class="caption">
                                                             <form class="form-inline">
                                                                 <div class="form-group">
-                                                                    <span class="caption-subject bold uppercase font-dark">历史统计</span>
+                                                                    <span class="caption-subject bold uppercase font-dark">人均访问时长历史统计</span>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <button type="button" class="btn blue btn-outline btn-circle" id="btnLast7Day">最近7天</button>
+                                                                    <button type="button" class="btn blue btn-outline btn-circle active" id="btnLast7Day">最近7天</button>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <button type="button" class="btn blue btn-outline btn-circle" id="btnLast30Day">最近30天</button>
@@ -219,12 +210,11 @@
                                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar" style="position: absolute;bottom: 10px; right: 190px; top: auto; cursor: pointer;"></i>
                                                                     <input type="text" id="dateTimeSel" class="form-control" style="width: 220px;padding-left: 35px;">
                                                                 </div>
-                                                                <a href="#" id="history_explain"><i class="fa fa-question-circle font-grey-salsa" style="font-size: 20px;"></i></a>
                                                             </form>
                                                         </div>
                                                     </div>
                                                     <div class="portlet-body">
-                                                        <div id="echarts_users" style="height:400px;margin-bottom: 20px;"></div>
+                                                        <div id="echarts_userTimeHis" style="height:400px;margin-bottom: 20px;"></div>
                                                         <table id="mytable"></table>
                                                     </div>
                                                 </div>
@@ -232,26 +222,27 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab2">
-                                        AP数据（已经认证成功上网的用户数），数据展现形式和前页相同
+                                        AP数据，展现形式同上。
                                     </div>
                                     <div class="tab-pane" id="tab3">
-                                        探针数据，探针探测的数据，数据展现形式和前页相同
+                                        探针数据，展现形式同上。
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- END CONTENT BODY -->
             </div>
-            <!-- END CONTENT -->
-            <!-- BEGIN QUICK SIDEBAR -->
-            <a href="javascript:;" class="page-quick-sidebar-toggler">
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+        <!-- BEGIN QUICK SIDEBAR -->
+        <a href="javascript:;" class="page-quick-sidebar-toggler">
             <i class="icon-login"></i>
         </a>
-            <!-- END QUICK SIDEBAR -->
-        </div>
-        <!-- END CONTAINER -->
+        <!-- END QUICK SIDEBAR -->
+    </div>
+    <!-- END CONTAINER -->
     </div>
     <!-- modal-dialog Begin -->
     <!-- modal-dialog End -->
@@ -280,27 +271,54 @@
     <script src="../assets/global/plugins/echarts/echarts.min.js" type="text/javascript"></script>
     <script src="../assets/global/plugins/echarts/theme/shine.js" type="text/javascript"></script>
     <script type="text/javascript">
+    var xData = [];
+    for (var i = 0; i < 24; i++) {
+        xData.push(padNumber(i, 2) + ':00');
+    }
+    xData.push('23:30');
+    var yData = []; // 实时统计用
+    var yData2 = getRandomYData(7); // 历史统计用
+    var dayCount = 7;
+    var xDataDays = [];
+    // var yDataDays = [];
+    window.chartType = 'bar';
+    for (i = 7; i >= 1; i--) {
+        var time = moment().subtract(i, 'days');
+        time = time.format('YYYY-MM-DD');
+        xDataDays.push(time);
+        // yDataDays.push(RandomNumBoth(300, 500).toString());
+    }
     $(document).ready(function() {
-        window.chartType == 'bar';
-        ///////////////////////////////////////////////////////////////////////////////////////
-        // 提示
-        $("#time_explain").tooltip({
-            html: true,
-            title: '实时客流：当前访客人数' + '<br/>' +
-                '累计客流：今日累计访客人数'
-        })
-        $("#history_explain").tooltip({
-            html: true,
-            title: '历史客流：截止昨日之前的访客人数统计（时间间隔不超过2个月）' + '<br/>' +
-                '总客流：当日的访客总人数' + '<br/>' +
-                '新客流：从未来访过的访客人数' + '<br/>' +
-                '老客流：曾经来访过的访客人数'
-        })
-        ///////////////////////////////////////////////////////////////////////////////////////
-        // 日期选择
-        var dayCount = 7;
-        var xDataDays = [];
-        var yDataDays = {};
+        // 初始化图表1
+        var myChart1 = echarts.init(document.getElementById('echarts_userTimeToDay'), 'shine');
+        setUserTimeToDayCharts(myChart1, xData);
+
+        // 适配大小
+        window.onresize = function() {
+            myChart1.resize();
+            myChart2.resize();
+        };
+
+        // 图表1半小时刷新访客数据
+        window.count = parseInt(moment().format('H'));
+        window.setInterval(function() {
+            if (window.count > 24) {
+                setUserTimeToDayCharts(myChart1, xData);
+                return;
+            }
+            window.count++;
+            yData.push(RandomNumBoth(100, 300).toString());
+            myChart1.setOption({
+                series: [{
+                    type: 'line',
+                    data: yData,
+                }, ]
+            })
+        }, 2000)
+        // 初始化图表2
+        var myChart2 = echarts.init(document.getElementById('echarts_userTimeHis'), 'shine');
+        setBarHisCharts(myChart2);
+        // 日期控件初始化
         $('#dateTimeSel').daterangepicker({
             startDate: moment().subtract(7, 'days'),
             endDate: moment().subtract(1, 'days'),
@@ -332,65 +350,21 @@
                 }
                 end.add(dayCount - 1, 'day');
             } else { dayCount = 1 }
-
-            // var yDataDays = {};
-            yDataDays = getRandomYData(yDataDays, dayCount);
-            if (window.chartType == 'bar') {
-                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
-            } else {
-                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
+            yData2 = getRandomYData(dayCount);
+            var show = false;
+            var disabled = true;
+            if (dayCount > 15) {
+                show = true;
+                disabled = false;
             }
-            var data = [];
-            setListData(data, xDataDays, yDataDays, dayCount);
+            if (window.chartType == 'bar') {
+                setBarHisCharts(myChart2);
+            } else {
+                setLineHisCharts(myChart2);
+            }
+            setListData();
         });
-
-        /////////////////////////////////////////////////////////////////////////////////////
-        //初始化图表1
-        var myChart = echarts.init(document.getElementById('echarts_users'), 'shine');
-        xDataDays = [];
-        for (var i = 7; i >= 1; i--) {
-            var time = moment().subtract(i, 'days');
-            time = time.format('YYYY-MM-DD');
-            xDataDays.push(time);
-        }
-        yDataDays = {
-            allUsers: [200, 100, 300, 280, 180, 250, 150],
-            newUsers: [120, 10, 150, 200, 40, 200, 70],
-            oldUsers: [80, 90, 150, 80, 140, 50, 80],
-        }
-        setBarChart1(myChart, xDataDays, yDataDays, dayCount);
-
-        ///////////////////////////////////////////////////////////////////////////////////////
         // 日期选择按钮
-        $('#btnLast30Day').removeClass("active");
-        $('#btnLast7Day').addClass("active");
-        $('#btnLast7Day').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dayCount = 7;
-            $('#btnLast30Day').removeClass("active");
-            $('#btnLast7Day').addClass("active");
-            $('#dateTimeSel').data('daterangepicker').setStartDate(moment().subtract(7, 'days'));
-            $('#dateTimeSel').data('daterangepicker').setEndDate(moment().subtract(1, 'days'));
-            xDataDays = [];
-            for (var i = 7; i >= 1; i--) {
-                var time = moment().subtract(i, 'days');
-                time = time.format('YYYY-MM-DD');
-                xDataDays.push(time);
-            }
-            yDataDays = {
-                allUsers: [200, 100, 300, 280, 180, 250, 150],
-                newUsers: [120, 10, 150, 200, 40, 200, 70],
-                oldUsers: [80, 90, 150, 80, 140, 50, 80],
-            }
-            if (window.chartType == 'bar') {
-                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
-            } else {
-                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
-            }
-            var data = [];
-            setListData(data, xDataDays, yDataDays, dayCount);
-        });
         $('#btnLast30Day').click(function(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -404,75 +378,40 @@
                 var time = moment().subtract(i, 'days');
                 time = time.format('YYYY-MM-DD');
                 xDataDays.push(time);
+                // yDataDays.push(RandomNumBoth(300, 500).toString());
             }
-            yDataDays = getRandomYData(yDataDays, 30);
+            yData2 = getRandomYData(dayCount);
             if (window.chartType == 'bar') {
-                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
+                setBarHisCharts(myChart2);
             } else {
-                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
+                setLineHisCharts(myChart2);
             }
-            var data = [];
-            setListData(data, xDataDays, yDataDays, dayCount);
+            setListData();
         });
-        /////////////////////////////////////////////////////////////////////////////////////
-        //图表类型切换
-        $("#lineType").click(function(e) {
+        $('#btnLast7Day').click(function(e) {
             e.preventDefault();
-            setLineChart1(myChart, xDataDays, yDataDays, dayCount);
-        });
-        $("#barType").click(function(e) {
-            // e.preventDefault();
-            var show = false;
-            var disabled = true;
-            if (dayCount > 15) {
-                show = true;
-                disabled = false;
+            e.stopPropagation();
+            dayCount = 7;
+            $('#btnLast30Day').removeClass("active");
+            $('#btnLast7Day').addClass("active");
+            $('#dateTimeSel').data('daterangepicker').setStartDate(moment().subtract(7, 'days'));
+            $('#dateTimeSel').data('daterangepicker').setEndDate(moment().subtract(1, 'days'));
+            xDataDays = [];
+            for (var i = 7; i >= 1; i--) {
+                var time = moment().subtract(i, 'days');
+                time = time.format('YYYY-MM-DD');
+                xDataDays.push(time);
+                // yDataDays.push(RandomNumBoth(300, 500).toString());
             }
-            myChart.setOption({
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow', // line/shadow/cross
-                    }
-                },
-                dataZoom: [{
-                    type: 'slider',
-                    show: show,
-                    start: 0,
-                    end: 100,
-                }, {
-                    type: 'inside',
-                    disabled: disabled,
-                    start: 0,
-                    end: 100,
-                }],
-                xAxis: {
-                    type: 'category',
-                    data: xDataDays,
-                    name: '日期',
-                    boundaryGap: true,
-                },
-                series: [{
-                    name: '总客流',
-                    type: 'bar', // bar/line
-                    data: yDataDays.allUsers,
-                }, {
-                    name: '新客',
-                    type: 'bar',
-                    stack: '总客流',
-                    barWidth: '10%',
-                    data: yDataDays.newUsers,
-                }, {
-                    name: '老客',
-                    type: 'bar',
-                    stack: '总客流',
-                    barWidth: '10%',
-                    data: yDataDays.oldUsers,
-                }, ]
-            });
+            yData2 = getRandomYData(dayCount);
+            if (window.chartType == 'bar') {
+                setBarHisCharts(myChart2);
+            } else {
+                setLineHisCharts(myChart2);
+            }
+            setListData();
         });
 
-        ///////////////////////////////////////////////////////////////////////////////////////////
         // 初始化表格
         $('#mytable').bootstrapTable({
             // search: true, // 显示搜索框
@@ -484,12 +423,6 @@
             pageList: [5, 10, 25, 50, 100], //可供选择的每页的行数
             striped: true,
             // toolbar: '#toolbar',
-            // showExport: true, // 导出（第三方）
-            exportDataType: 'all', // 导出参数
-            exportTypes: ['excel'], // 导出文件类型
-            exportOptions: { // 导出选项
-                excelFileFormat: 'xlsx'
-            },
             // showColumns: true, // 显示列选择按钮
             // clickToSelect: true,
             columns: [{ // 表头
@@ -500,36 +433,8 @@
                 sortable: true, //启用排序
                 visible: true,
             }, {
-                field: 'allUsers',
-                title: '总客流',
-                align: 'center',
-                valign: 'middle',
-                sortable: true,
-                visible: true,
-            }, {
-                field: 'newUsers',
-                title: '新访客数',
-                align: 'center',
-                valign: 'middle',
-                sortable: true,
-                visible: true,
-            }, {
-                field: 'oldUsers',
-                title: '老访客数',
-                align: 'center',
-                valign: 'middle',
-                sortable: true,
-                visible: true,
-            }, {
-                field: 'newUsersPercent',
-                title: '新访客占比',
-                align: 'center',
-                valign: 'middle',
-                sortable: true,
-                visible: true,
-            }, {
-                field: 'oldUsersPercent',
-                title: '老访客占比',
+                field: 'time',
+                title: '人均访问时长',
                 align: 'center',
                 valign: 'middle',
                 sortable: true,
@@ -547,233 +452,173 @@
                 events: 'operateEvents'
             }],
         });
-
-        var data = [];
-        setListData(data, xDataDays, yDataDays, dayCount);
-
-        /////////////////////////////////////////////////////////////////////////////////////
-        //初始化图表2
-        var totalUsers = 300;
-        var myChart2 = echarts.init(document.getElementById('echarts_time_users'), 'shine');
-        var data2 = [];
-        var data3 = [];
-        var curTime = moment();
-        $("#updateTimeCtl").text('更新时间：' + curTime.format("YYYY/MM/DD HH:mm:ss"));
-        for (var i = 0; i < 50; i++) {
-            var dataTime = {};
-            var dataTime3 = {};
-            dataTime.value = [];
-            dataTime3.value = [];
-            if (i == 0) {
-                dataTime.value.push(curTime.format("YYYY/MM/DD HH:mm:ss"));
-                dataTime3.value.push(curTime.format("YYYY/MM/DD HH:mm:ss"));
-            } else {
-                dataTime.value.push(curTime.subtract(1, 'seconds').format("YYYY/MM/DD HH:mm:ss"));
-                dataTime3.value.push(curTime.format("YYYY/MM/DD HH:mm:ss"));
-            }
-            dataTime.value.push(RandomNumBoth(180, 200));
-            totalUsers -= (Math.round(Math.random() * 5));
-            dataTime3.value.push(totalUsers.toString());
-            dataTime.name = curTime.format("HH:mm:ss");
-            dataTime3.name = curTime.format("HH:mm:ss");
-            data2.unshift(dataTime);
-            data3.unshift(dataTime3);
-        }
-        totalUsers = 300;
-        setLineChart(myChart2, data2, data3);
-        window.setInterval(function() {
-            data2.shift();
-            data3.shift();
-            data2.push({
-                name: moment().format("HH:mm:ss"),
-                value: [moment().format("YYYY/MM/DD HH:mm:ss"), RandomNumBoth(180, 200)]
-            });
-            totalUsers = getTotalUsersRandom(totalUsers);
-            data3.push({
-                name: moment().format("HH:mm:ss"),
-                value: [moment().format("YYYY/MM/DD HH:mm:ss"), totalUsers]
-            });
-            myChart2.setOption({
-                series: [{
-                    data: data2
-                }, {
-                    data: data3
-                }]
-            });
-            $("#updateTimeCtl").text('更新时间：' + moment().format("YYYY/MM/DD HH:mm:ss"));
-        }, 1000)
-        //////////////////////////////////////////////////////////////////////////////////////////////////
-        // 生成实时折线图
-        $("#lineType2").click(function() {
-            setLineChart(myChart2, data2, data3);
-        })
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////
-        // 自适应窗体尺寸
-        window.onresize = function() {
-            myChart.resize();
-            myChart2.resize();
-        };
+        setListData();
     })
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    // 获取值用随机数
-    function getRandomYData(data, num) {
-        var allUsers = [];
-        var newUsers = [];
-        var oldUsers = [];
-        for (var i = 0; i < num; i++) {
-            var all = parseInt((Math.random() + 2) * 100); // 200-300内随机数
-            allUsers.push(all);
-            var newU = parseInt(Math.random() * 200); // 0-200内随机数
-            newUsers.push(newU);
-            oldUsers.push(all - newU);
-        }
-        return {
-            allUsers: allUsers,
-            newUsers: newUsers,
-            oldUsers: oldUsers
-        }
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    // 生成列表数据
-    function setListData(data, xDataDays, yDataDays, dayCount) {
-        var data = [];
-        for (var i = 0; i < dayCount; i++) {
-            var temp = {};
-            temp.date = xDataDays[i];
-            temp.allUsers = yDataDays.allUsers[i];
-            temp.newUsers = yDataDays.newUsers[i];
-            temp.oldUsers = yDataDays.oldUsers[i];
-            temp.newUsersPercent = Math.round((temp.newUsers / temp.allUsers) * 100) + '%';
-            temp.oldUsersPercent = Math.round((temp.oldUsers / temp.allUsers) * 100) + '%';
-            data.push(temp);
-        }
-        $('#mytable').bootstrapTable('removeAll');
-        $('#mytable').bootstrapTable('append', data);
-        return true;
-    }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    // 生成范围随机数
-    function RandomNumBoth(Min, Max) {
-        var Range = Max - Min;
-        var Rand = Math.random();
-        var num = Min + Math.round(Rand * Range); //四舍五入
-        return num.toString();
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    // 生成折线图2
-    function setLineChart(myChart2, data2, data3) {
-        myChart2.clear();
-        myChart2.showLoading();
-        window.setTimeout(function() {
-            myChart2.hideLoading();
-            myChart2.setOption({
-                legend: {
-                    data: ['实时客流', '累计客流'],
-                    // left: 'center',
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    formatter: function(params) {
-                        var time1 = params[0].data.name;
-                        var value1 = params[0].data.value[1];
-                        var time2 = params[1].data.name;
-                        var value2 = params[1].data.value[1];
-                        return (time1 + '<br/>' + '实时客流：' + value1 + '<br/>' + '累计客流：' + value2)
-                    }
-                },
-                xAxis: {
-                    type: 'time',
-                    splitLine: {
-                        show: false
-                    },
-                    axisLabel: {
-                        formatter: function(value, index) {
-                            var time = moment(value);
-                            var result = '';
-                            if (index == 0) {
-                                result = (time.format("HH:mm:ss") + '\n' + time.format("YYYY/MM/DD"))
-                            } else {
-                                result = time.format("HH:mm:ss");
-                            }
-                            return result;
-                        }
-                    }
-                },
-                yAxis: {
-                    type: 'value',
-                    boundaryGap: [0, '20%'],
-                    splitLine: {
-                        show: false
-                    }
-                },
-                series: [{
-                        name: '实时客流',
-                        type: 'line',
-                        showSymbol: false,
-                        hoverAnimation: false,
-                        areaStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgb(54, 215, 183)'
-                                }, {
-                                    offset: 1,
-                                    color: 'rgb(74, 195, 144)'
-                                }])
-                            }
-                        },
-                        data: data2,
-                    },
-                    {
-                        name: '累计客流',
-                        type: 'line',
-                        showSymbol: true,
-                        hoverAnimation: false,
-                        data: data3,
-                    }
-                ]
-            });
-        }, 500);
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-    // 生成折线图2
-    function getTotalUsersRandom(totalUsers) {
-        totalUsers += (Math.round(Math.random() * 2));
-        return totalUsers;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
     // 进入明细表
     window.operateEvents = {
         'click .detail': function(e, value, row, index) {
             e.preventDefault();
-            window.location.href = "./userNumDetail.html";
+            window.location.href = "./userTimeDetail.html";
         },
     }
 
-    ////////////////////////////////////////////////////////////////////////
-    // 切换为柱状图
-    function setBarChart1(myChart, xDataDays, yDataDays, dayCount) {
+    /////////////////////////////////////////////////////////
+    // 设置今日统计表
+    function setUserTimeToDayCharts(myChart1, xData) {
+        myChart1.clear();
+        myChart1.showLoading();
+        window.setTimeout(function() {
+            // 数据
+            yData = [];
+            window.count = parseInt(moment().format('H'));
+            for (var i = 0; i <= count; i++) {
+                yData.push(RandomNumBoth(100, 300).toString());
+            }
+            // 图表
+            myChart1.setOption({
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'line',
+                    }
+                },
+                dataZoom: [{
+                    type: 'slider',
+                    show: true,
+                    start: 0,
+                    end: 100,
+                }, {
+                    type: 'inside',
+                    disabled: false,
+                    start: 0,
+                    end: 100,
+                }],
+                legend: {
+                    left: 'center',
+                    top: 0,
+                    data: ['访客人数'],
+                },
+                xAxis: {
+                    type: 'category',
+                    data: xData,
+                    name: '时间',
+                    boundaryGap: false,
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '人数',
+                    splitNumber: 2,
+                    boundaryGap: ['0', '20%'],
+                    splitLine: {
+                        show: false
+                    },
+                },
+                series: [{
+                    name: '访客人数',
+                    type: 'line',
+                    smooth: true,
+                    data: yData,
+                    markPoint: {
+                        data: [
+                            { type: 'max', name: '最大值' },
+                            { type: 'min', name: '最小值' }
+                        ],
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(53, 152, 220)',
+                            },
+                            emphasis: {
+                                color: '#1188da',
+                            },
+                        },
+                    },
+                    markLine: {
+                        data: [
+                            { type: 'average', name: '平均值' }
+                        ],
+                        precision: 0,
+                        label: {
+                            normal: {
+                                color: '#000',
+                                position: 'end',
+                                formatter: '{b}: {c}'
+                            }
+                        }
+                    },
+                    markArea: {
+                        data: [
+                            [{
+                                name: '早高峰',
+                                xAxis: '07:00'
+                            }, {
+                                xAxis: '10:00'
+                            }],
+                            [{
+                                name: '晚高峰',
+                                xAxis: '17:00'
+                            }, {
+                                xAxis: '21:00'
+                            }]
+                        ],
+                        itemStyle: {
+                            normal: {
+                                color: 'rgba(53, 152, 220, 0.1)',
+                            },
+                            emphasis: {
+                                color: 'rgba(53, 152, 220, 0.1)',
+                            },
+                        },
+                        label: {
+                            normal: {
+                                color: '#000',
+                            }
+                        }
+                    }
+                }, ]
+            });
+            myChart1.hideLoading();
+        }, 1000)
+    }
+
+    /////////////////////////////////////////////////////////
+    // 设置整点历史统计表
+    function setBarHisCharts(myChart2) {
         window.chartType = 'bar';
+        myChart2.clear();
+        myChart2.showLoading();
         var show = false;
         var disabled = true;
         if (dayCount > 15) {
             show = true;
             disabled = false;
         }
-        myChart.clear();
-        myChart.showLoading();
         window.setTimeout(function() {
-            myChart.hideLoading();
-            myChart.setOption({
+            myChart2.hideLoading();
+            myChart2.setOption({
+                dataZoom: [{
+                    type: 'slider',
+                    show: show,
+                    start: 0,
+                    end: 100,
+                }, {
+                    type: 'inside',
+                    disabled: disabled,
+                    start: 0,
+                    end: 100,
+                }],
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
                         type: 'shadow', // line/shadow/cross
-                    }
+                    },
+                    formatter: '{b}<br />人均访问时长：{c}分钟',
+                },
+                legend: {
+                    left: 'center',
+                    top: 0,
+                    data: ['人均访问时长']
                 },
                 toolbox: {
                     show: true,
@@ -785,7 +630,7 @@
                             title: '柱状图',
                             icon: 'image://https://www.weiquaninfo.cn/images/bar.png',
                             onclick: function() {
-                                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
+                                setBarHisCharts(myChart2);
                             }
                         },
                         myLine: {
@@ -793,85 +638,59 @@
                             title: '折线图',
                             icon: 'image://https://www.weiquaninfo.cn/images/line1.png',
                             onclick: function() {
-                                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
+                                setLineHisCharts(myChart2);
                             }
                         },
                     }
-                },
-                dataZoom: [{ // 这个dataZoom组件，默认控制x轴。
-                        type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
-                        start: 0, // 左边在 10% 的位置。
-                        end: 100, // 右边在 60% 的位置。
-                        show: false,
-                    },
-                    { // 这个dataZoom组件，也控制x轴。
-                        type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
-                        start: 0, // 左边在 10% 的位置。
-                        end: 100, // 右边在 60% 的位置。
-                        disabled: true,
-                    }
-                ],
-                legend: {
-                    type: 'plain',
-                    show: true,
-                    left: 'center',
-                    top: 0,
-                    data: ['总客流', '新客', '老客']
                 },
                 xAxis: {
                     type: 'category',
                     data: xDataDays,
                     name: '日期',
-                    // boundaryGap: false,
                 },
                 yAxis: {
                     type: 'value',
-                    name: '人数',
-                    splitNumber: 3,
+                    name: '人均访问时长(分钟)',
+                    splitNumber: 2,
                     boundaryGap: ['0', '20%'],
+                    splitLine: {
+                        show: false
+                    },
                 },
                 series: [{
-                    name: '总客流',
-                    type: 'bar', // bar/line
-                    // stack: '123',
-                    data: yDataDays.allUsers,
-                }, {
-                    name: '新客',
+                    name: '人均访问时长',
                     type: 'bar',
-                    barWidth: '10%',
-                    stack: '总客流', // 总客流/其他
-                    data: yDataDays.newUsers,
-                }, {
-                    name: '老客',
-                    type: 'bar',
-                    barWidth: '10%',
-                    stack: '总客流',
-                    data: yDataDays.oldUsers,
+                    data: yData2,
+                    barWidth: '50%',
+                    itemStyle: {
+                        normal: {
+                            color: '#3598DC',
+                        },
+                    },
                 }, ]
-            });
+            })
         }, 1000)
-
     }
-    ////////////////////////////////////////////////////////////////////////
-    // 切换为折线图setLineChart
-    function setLineChart1(myChart, xDataDays, yDataDays, dayCount) {
+
+    function setLineHisCharts(myChart2) {
         window.chartType = 'line';
+        myChart2.clear();
+        myChart2.showLoading();
         var show = false;
         var disabled = true;
         if (dayCount > 15) {
             show = true;
             disabled = false;
         }
-        myChart.clear();
-        myChart.showLoading();
         window.setTimeout(function() {
-            myChart.hideLoading();
-            myChart.setOption({
+            myChart2.hideLoading();
+            myChart2.setOption({
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
-                        type: 'line', // line/shadow/cross
-                    }
+                        type: 'line',
+                    },
+                    formatter: '{b}<br />人均访问时长：{c}分钟',
                 },
                 toolbox: {
                     show: true,
@@ -883,7 +702,7 @@
                             title: '柱状图',
                             icon: 'image://https://www.weiquaninfo.cn/images/bar1.png',
                             onclick: function() {
-                                setBarChart1(myChart, xDataDays, yDataDays, dayCount);
+                                setBarHisCharts(myChart2);
                             }
                         },
                         myLine: {
@@ -891,7 +710,7 @@
                             title: '折线图',
                             icon: 'image://https://www.weiquaninfo.cn/images/line.png',
                             onclick: function() {
-                                setLineChart1(myChart, xDataDays, yDataDays, dayCount);
+                                setLineHisCharts(myChart2);
                             }
                         },
                     }
@@ -907,37 +726,82 @@
                     start: 0,
                     end: 100,
                 }],
+                legend: {
+                    left: 'center',
+                    top: 0,
+                    data: ['访客人数'],
+                },
                 xAxis: {
                     type: 'category',
                     data: xDataDays,
-                    name: '日期',
+                    name: '时间',
                     boundaryGap: false,
                 },
                 yAxis: {
                     type: 'value',
                     name: '人数',
-                    splitNumber: 3,
+                    splitNumber: 2,
                     boundaryGap: ['0', '20%'],
+                    splitLine: {
+                        show: false
+                    },
                 },
                 series: [{
-                    name: '总客流',
-                    type: 'line', // bar/line
-                    data: yDataDays.allUsers,
-                    // areaStyle: { normal: {} },
-                }, {
-                    name: '新客',
+                    name: '访客人数',
                     type: 'line',
-                    data: yDataDays.newUsers,
-                    // areaStyle: { normal: {} },
-                }, {
-                    name: '老客',
-                    type: 'line',
-                    data: yDataDays.oldUsers,
-                    // areaStyle: { normal: {} },
+                    smooth: true,
+                    data: yData2,
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(53, 152, 220)',
+                        },
+                    },
                 }, ]
             });
         }, 1000)
+    }
 
+    ///////////////////////////////////////////////////////////
+    // 补0
+    function padNumber(num, fill) {
+        //改自：http://blog.csdn.net/aimingoo/article/details/4492592
+        var len = ('' + num).length;
+        return (Array(
+            fill > len ? fill - len + 1 || 0 : 0
+        ).join(0) + num);
+    }
+
+    /////////////////////////////////////////////////////////
+    // 生成范围随机数
+    function RandomNumBoth(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        var num = Min + Math.round(Rand * Range); //四舍五入
+        return num;
+    }
+
+    /////////////////////////////////////////////////////////
+    // 生成多个随机数
+    function getRandomYData(dayCount) {
+        var data = [];
+        for (i = 0; i < dayCount; i++) {
+            data.push(RandomNumBoth(100, 300));
+        }
+        return data;
+    }
+
+    // 生成列表数据
+    function setListData() {
+        var data = [];
+        for (var i = 0; i < dayCount; i++) {
+            var temp = {};
+            temp.date = xDataDays[i];
+            temp.time = parseInt(yData2[i] / 60) + '小时' + (yData2[i] - parseInt(yData2[i] / 60) * 60) + '分钟' + RandomNumBoth(0, 60) + '秒';
+            data.push(temp);
+        }
+        $('#mytable').bootstrapTable('removeAll');
+        $('#mytable').bootstrapTable('append', data);
+        return true;
     }
     </script>
 </body>
