@@ -132,6 +132,14 @@
                                 </a>
                                 </li>
                             </ul>
+                            <ul class="sub-menu">
+                                <li class="nav-item start">
+                                    <a href="devType.html" class="nav-link ">
+                                    <i class="iconfont icon-phone" style="font-size: 20px;"></i>
+                                    <span class="title">终端类型统计</span>
+                                </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                     <!-- END SIDEBAR MENU -->
@@ -503,6 +511,11 @@
         /////////////////////////////////////////////////////////////////////////////////////
         //初始化图表1
         var sexOption = {
+            title: {
+                subtext: '总计：' + 645,
+                left: 'center',
+                top: 20,
+            },
             tooltip: {
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -529,6 +542,11 @@
             }]
         }
         var sexOption_1 = {
+            title: {
+                subtext: '总计：' + 645,
+                left: 'center',
+                top: 20,
+            },
             tooltip: {
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -567,25 +585,39 @@
             myChart_1.setOption(sexOption_1);
         }, 500);
         window.setInterval(function() {
+            var d1 = RandomNumBoth(200, 300);
+            var d2 = RandomNumBoth(300, 400);
             var data = [{
-                value: RandomNumBoth(200, 300).toString(),
+                value: d1.toString(),
                 name: '男',
             }, {
-                value: RandomNumBoth(300, 400).toString(),
+                value: d2.toString(),
                 name: '女',
             }, ];
             myChart.setOption({
-                series: [{ data: data }]
+                title: {
+                    subtext: '总计：' + (d1 + d2),
+                },
+                series: [{
+                    data: data
+                }]
             });
+            d1 = RandomNumBoth(500, 600);
+            d2 = RandomNumBoth(700, 800);
             var data_1 = [{
-                value: RandomNumBoth(500, 600).toString(),
+                value: d1.toString(),
                 name: '男',
             }, {
-                value: RandomNumBoth(700, 800).toString(),
+                value: d2.toString(),
                 name: '女',
             }, ];
             myChart_1.setOption({
-                series: [{ data: data_1 }]
+                title: {
+                    subtext: '总计：' + (d1 + d2),
+                },
+                series: [{
+                    data: data_1
+                }]
             });
         }, 2000)
 
@@ -594,7 +626,7 @@
         //初始化图表2
         var areaOption = {
             title: {
-                text: '实时省份排名（前六名）',
+                text: '实时省份排名（Top6）',
                 left: 'center'
             },
             tooltip: {
@@ -665,7 +697,7 @@
         }
         var areaOption_2 = {
             title: {
-                text: '今日累计省份排名（前六名）',
+                text: '今日累计省份排名（Top6）',
                 left: 'center'
             },
             tooltip: {
@@ -1018,7 +1050,7 @@
                         data: ['上海', '河南', '湖北', "北京", "重庆", "山东"],
                     },
                     title: {
-                        text: '实时省份排名（前六名）'
+                        text: '实时省份排名（Top6）'
                     }
                 });
             }, 500);
@@ -1037,7 +1069,7 @@
                         data: ["上海", "郑州", "武汉", "苏州", "深圳", "济南"],
                     },
                     title: {
-                        text: '实时城市排名（前六名）'
+                        text: '实时城市排名（Top6）'
                     }
                 });
             }, 500);
@@ -1056,7 +1088,7 @@
                         data: ['上海', '河南', '湖北', "北京", "重庆", "山东"],
                     },
                     title: {
-                        text: '今日累计省份排名（前六名）'
+                        text: '今日累计省份排名（Top6）'
                     }
                 });
             }, 500);
@@ -1075,7 +1107,7 @@
                         data: ["上海", "郑州", "武汉", "苏州", "深圳", "济南"],
                     },
                     title: {
-                        text: '今日累计城市排名（前六名）'
+                        text: '今日累计城市排名（Top6）'
                     }
                 });
             }, 500);

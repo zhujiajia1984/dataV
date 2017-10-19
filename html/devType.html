@@ -121,19 +121,19 @@
                                 </li>
                             </ul>
                             <ul class="sub-menu">
-                                <li class="nav-item start open">
+                                <li class="nav-item start">
                                     <a href="userTime.html" class="nav-link ">
                                     <i class="iconfont icon-time" style="font-size: 20px;"></i>
                                     <span class="title">访问时间统计</span>
-                                    <span class="selected"></span>
                                 </a>
                                 </li>
                             </ul>
                             <ul class="sub-menu">
-                                <li class="nav-item start">
+                                <li class="nav-item start open">
                                     <a href="devType.html" class="nav-link ">
                                     <i class="iconfont icon-phone" style="font-size: 20px;"></i>
                                     <span class="title">终端类型统计</span>
+                                    <span class="selected"></span>
                                 </a>
                                 </li>
                             </ul>
@@ -158,14 +158,14 @@
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>访问时间统计</span>
+                                <span>终端类型统计</span>
                             </li>
                         </ul>
                     </div>
                     <!-- END PAGE BAR -->
                     <!-- BEGIN PAGE TITLE-->
-                    <h1 class="page-title">访问时间统计
-                        <small>对用户访问时间点和时长进行统计</small>
+                    <h1 class="page-title">终端类型统计
+                        <small>对终端种类、系统和机型进行统计</small>
                     </h1>
                     <!-- END PAGE TITLE-->
                     <div class="row">
@@ -185,16 +185,29 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab1">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="portlet light bordered">
                                                     <div class="portlet-title">
                                                         <div class="caption">
-                                                            <span class="caption-subject bold uppercase font-dark">今日整点访客统计</span>
-                                                            <span class="caption-helper" id="updateTimeCtl">每一小时更新一次</span>
+                                                            <span class="caption-subject bold uppercase font-dark">实时统计</span>
+                                                            <span class="caption-helper" id="updateTimeCtl">终端类型</span>
                                                         </div>
                                                     </div>
                                                     <div class="portlet-body">
-                                                        <div id="echarts_userTimeToDay" style="height:400px;"></div>
+                                                        <div id="echarts_devTypeRT1" style="height:400px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <span class="caption-subject bold uppercase font-dark">今日累计</span>
+                                                            <span class="caption-helper" id="updateTimeCtl">终端类型</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div id="echarts_devTypeRT2" style="height:400px;"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -206,7 +219,7 @@
                                                         <div class="caption">
                                                             <form class="form-inline">
                                                                 <div class="form-group">
-                                                                    <span class="caption-subject bold uppercase font-dark">人均访问时长历史统计</span>
+                                                                    <span class="caption-subject bold uppercase font-dark">历史统计</span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <button type="button" class="btn blue btn-outline btn-circle active" id="btnLast7Day">最近7天</button>
@@ -220,9 +233,11 @@
                                                                 </div>
                                                             </form>
                                                         </div>
+                                                        <div class="actions">
+                                                        </div>
                                                     </div>
                                                     <div class="portlet-body">
-                                                        <div id="echarts_userTimeHis" style="height:400px;margin-bottom: 20px;"></div>
+                                                        <div id="echarts_sysDevHis" style="height:400px;margin-bottom: 20px;"></div>
                                                         <table id="mytable"></table>
                                                     </div>
                                                 </div>
@@ -230,10 +245,10 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab2">
-                                        AP数据，展现形式同上。
+                                        使用AP的设备类型数据
                                     </div>
                                     <div class="tab-pane" id="tab3">
-                                        探针数据，展现形式同上。
+                                        被探针探测到的设备类型数据
                                     </div>
                                 </div>
                             </div>
@@ -278,55 +293,21 @@
     <script src="../assets/global/plugins/bootstrap-table-master/bootstrap-table-export.js"></script>
     <script src="../assets/global/plugins/echarts/echarts.min.js" type="text/javascript"></script>
     <script src="../assets/global/plugins/echarts/theme/shine.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js" type="text/javascript"></script>
+    <!--     <script src="../assets/global/plugins/jvectormap/jquery-jvectormap-china-en.js" type="text/javascript"></script> -->
+    <script src="../assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill.js" type="text/javascript"></script>
     <script type="text/javascript">
-    var xData = [];
-    for (var i = 0; i < 24; i++) {
-        xData.push(padNumber(i, 2) + ':00');
-    }
-    xData.push('23:30');
-    var yData = []; // 实时统计用
-    var yData2 = getRandomYData(7); // 历史统计用
     var dayCount = 7;
     var xDataDays = [];
-    // var yDataDays = [];
-    window.chartType = 'bar';
-    for (i = 7; i >= 1; i--) {
+    for (var i = 7; i >= 1; i--) {
         var time = moment().subtract(i, 'days');
         time = time.format('YYYY-MM-DD');
         xDataDays.push(time);
-        // yDataDays.push(RandomNumBoth(300, 500).toString());
     }
+    var yDataDays = getRandomYData(7);
+    window.chartType = 'bar';
     $(document).ready(function() {
-        // 初始化图表1
-        var myChart1 = echarts.init(document.getElementById('echarts_userTimeToDay'), 'shine');
-        setUserTimeToDayCharts(myChart1, xData);
-
-        // 适配大小
-        window.onresize = function() {
-            myChart1.resize();
-            myChart2.resize();
-        };
-
-        // 图表1半小时刷新访客数据
-        window.count = parseInt(moment().format('H'));
-        window.setInterval(function() {
-            if (window.count > 24) {
-                setUserTimeToDayCharts(myChart1, xData);
-                return;
-            }
-            window.count++;
-            yData.push(RandomNumBoth(100, 300).toString());
-            myChart1.setOption({
-                series: [{
-                    type: 'line',
-                    data: yData,
-                }, ]
-            })
-        }, 2000)
-        // 初始化图表2
-        var myChart2 = echarts.init(document.getElementById('echarts_userTimeHis'), 'shine');
-        setBarHisCharts(myChart2);
-        // 日期控件初始化
+        // 日期控件
         $('#dateTimeSel').daterangepicker({
             startDate: moment().subtract(7, 'days'),
             endDate: moment().subtract(1, 'days'),
@@ -358,7 +339,7 @@
                 }
                 end.add(dayCount - 1, 'day');
             } else { dayCount = 1 }
-            yData2 = getRandomYData(dayCount);
+            yDataDays = getRandomYData(dayCount);
             var show = false;
             var disabled = true;
             if (dayCount > 15) {
@@ -366,12 +347,27 @@
                 disabled = false;
             }
             if (window.chartType == 'bar') {
-                setBarHisCharts(myChart2);
+                setBarChart(myChart3, xDataDays, yDataDays, dayCount);
+            } else if (window.chartType == 'line') {
+                setLineChart(myChart3, xDataDays, yDataDays, dayCount);
+            } else if (window.chartType == 'pie') {
+                setPieChart(myChart3, xDataDays, yDataDays, dayCount);
             } else {
-                setLineHisCharts(myChart2);
+                alert("error");
             }
             setListData();
         });
+        // 初始化图表1
+        var myChart1 = echarts.init(document.getElementById('echarts_devTypeRT1'), 'shine');
+        setDevTypeRT1(myChart1);
+        // 初始化图表2
+        var myChart2 = echarts.init(document.getElementById('echarts_devTypeRT2'), 'shine');
+        setDevTypeRT2(myChart2, myChart1);
+
+        // 初始化图表3（历史统计）
+        var myChart3 = echarts.init(document.getElementById('echarts_sysDevHis'), 'shine');
+        setBarChart(myChart3);
+
         // 日期选择按钮
         $('#btnLast30Day').click(function(e) {
             e.preventDefault();
@@ -386,13 +382,16 @@
                 var time = moment().subtract(i, 'days');
                 time = time.format('YYYY-MM-DD');
                 xDataDays.push(time);
-                // yDataDays.push(RandomNumBoth(300, 500).toString());
             }
-            yData2 = getRandomYData(dayCount);
+            yDataDays = getRandomYData(30);
             if (window.chartType == 'bar') {
-                setBarHisCharts(myChart2);
+                setBarChart(myChart3, xDataDays, yDataDays, dayCount);
+            } else if (window.chartType == 'line') {
+                setLineChart(myChart3, xDataDays, yDataDays, dayCount);
+            } else if (window.chartType == 'pie') {
+                setPieChart(myChart3, xDataDays, yDataDays, dayCount);
             } else {
-                setLineHisCharts(myChart2);
+                alert("error");
             }
             setListData();
         });
@@ -409,18 +408,22 @@
                 var time = moment().subtract(i, 'days');
                 time = time.format('YYYY-MM-DD');
                 xDataDays.push(time);
-                // yDataDays.push(RandomNumBoth(300, 500).toString());
             }
-            yData2 = getRandomYData(dayCount);
+            yDataDays = getRandomYData(7);
             if (window.chartType == 'bar') {
-                setBarHisCharts(myChart2);
+                setBarChart(myChart3, xDataDays, yDataDays, dayCount);
+            } else if (window.chartType == 'line') {
+                setLineChart(myChart3, xDataDays, yDataDays, dayCount);
+            } else if (window.chartType == 'pie') {
+                setPieChart(myChart3, xDataDays, yDataDays, dayCount);
             } else {
-                setLineHisCharts(myChart2);
+                alert("error");
             }
+
             setListData();
         });
 
-        // 初始化表格
+        // 初始化表格1
         $('#mytable').bootstrapTable({
             // search: true, // 显示搜索框
             sortName: 'date', // 初始化排序字段
@@ -431,6 +434,7 @@
             pageList: [5, 10, 25, 50, 100], //可供选择的每页的行数
             striped: true,
             // toolbar: '#toolbar',
+            // showExport: true, // 导出（第三方）
             // showColumns: true, // 显示列选择按钮
             // clickToSelect: true,
             columns: [{ // 表头
@@ -441,8 +445,43 @@
                 sortable: true, //启用排序
                 visible: true,
             }, {
-                field: 'time',
-                title: '人均访问时长',
+                field: 'androidDev',
+                title: '安卓',
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+                visible: true,
+            }, {
+                field: 'iosDev',
+                title: 'IOS',
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+                visible: true,
+            }, {
+                field: 'otherDev',
+                title: '未知',
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+                visible: true,
+            }, {
+                field: 'androidDevPercent',
+                title: '安卓占比',
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+                visible: true,
+            }, {
+                field: 'iosPercent',
+                title: 'IOS占比',
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+                visible: true,
+            }, {
+                field: 'unknownPercent',
+                title: '未知占比',
                 align: 'center',
                 valign: 'middle',
                 sortable: true,
@@ -461,150 +500,246 @@
             }],
         });
         setListData();
+
+        // 自适应窗体尺寸
+        window.onresize = function() {
+            myChart1.resize();
+            myChart2.resize();
+            myChart3.resize();
+        };
     })
-
-    /////////////////////////////////////////////////////////
-    // 进入明细表
-    window.operateEvents = {
-        'click .detail': function(e, value, row, index) {
-            e.preventDefault();
-            window.location.href = "./userTimeDetail.html";
-        },
+    ////////////////////////////////////////////////////////////////////////////////
+    // 生成范围随机数
+    function RandomNumBoth(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        var num = Min + Math.round(Rand * Range); //四舍五入
+        return num;
     }
-
-    /////////////////////////////////////////////////////////
-    // 设置今日统计表
-    function setUserTimeToDayCharts(myChart1, xData) {
+    ////////////////////////////////////////////////////////////////////////////////
+    // 生成实时终端排名表
+    function setDevTypeRT1(myChart1) {
         myChart1.clear();
         myChart1.showLoading();
         window.setTimeout(function() {
-            // 数据
-            yData = [];
-            window.count = parseInt(moment().format('H'));
-            for (var i = 0; i <= count; i++) {
-                yData.push(RandomNumBoth(100, 300).toString());
-            }
-            // 图表
+            myChart1.hideLoading();
             myChart1.setOption({
+                title: {
+                    text: '手机品牌排名（Top6）',
+                    left: 'center'
+                },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
-                        type: 'line',
+                        type: 'shadow'
                     }
                 },
-                dataZoom: [{
-                    type: 'slider',
-                    show: true,
-                    start: 0,
-                    end: 100,
-                }, {
-                    type: 'inside',
-                    disabled: false,
-                    start: 0,
-                    end: 100,
-                }],
-                legend: {
-                    left: 'center',
-                    top: 0,
-                    data: ['访客人数'],
-                },
                 xAxis: {
-                    type: 'category',
-                    data: xData,
-                    name: '时间',
-                    boundaryGap: false,
-                },
-                yAxis: {
                     type: 'value',
-                    name: '人数',
-                    splitNumber: 2,
                     boundaryGap: ['0', '20%'],
                     splitLine: {
                         show: false
                     },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    }
+                },
+                yAxis: {
+                    type: 'category',
+                    data: ['三星', 'vivo', 'oppo', '华为', '小米', 'iphone']
                 },
                 series: [{
-                    name: '访客人数',
-                    type: 'line',
-                    smooth: true,
-                    data: yData,
-                    markPoint: {
-                        data: [
-                            { type: 'max', name: '最大值' },
-                            { type: 'min', name: '最小值' }
-                        ],
-                        itemStyle: {
-                            normal: {
-                                color: 'rgb(53, 152, 220)',
-                            },
-                            emphasis: {
-                                color: '#1188da',
-                            },
-                        },
-                    },
-                    markLine: {
-                        data: [
-                            { type: 'average', name: '平均值' }
-                        ],
-                        precision: 0,
-                        label: {
-                            normal: {
-                                color: '#000',
-                                position: 'end',
-                                formatter: '{b}: {c}'
-                            }
+                    name: '手机品牌',
+                    type: 'bar',
+                    data: [
+                        { value: RandomNumBoth(0, 50).toString() },
+                        { value: RandomNumBoth(50, 100).toString() },
+                        { value: RandomNumBoth(100, 200).toString() },
+                        { value: RandomNumBoth(200, 300).toString() },
+                        { value: RandomNumBoth(300, 400).toString() },
+                        { value: RandomNumBoth(400, 500).toString() },
+                    ],
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'right'
                         }
                     },
-                    markArea: {
-                        data: [
-                            [{
-                                name: '早高峰',
-                                xAxis: '07:00'
-                            }, {
-                                xAxis: '10:00'
-                            }],
-                            [{
-                                name: '晚高峰',
-                                xAxis: '17:00'
-                            }, {
-                                xAxis: '21:00'
-                            }]
-                        ],
-                        itemStyle: {
-                            normal: {
-                                color: 'rgba(53, 152, 220, 0.1)',
-                            },
-                            emphasis: {
-                                color: 'rgba(53, 152, 220, 0.1)',
-                            },
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1, [
+                                    { offset: 0, color: '#83bff6' },
+                                    { offset: 0.5, color: '#188df0' },
+                                    { offset: 1, color: '#188df0' }
+                                ]
+                            )
                         },
-                        label: {
-                            normal: {
-                                color: '#000',
-                            }
-                        }
+                        emphasis: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1, [
+                                    { offset: 0, color: '#2378f7' },
+                                    { offset: 0.7, color: '#2378f7' },
+                                    { offset: 1, color: '#83bff6' }
+                                ]
+                            )
+                        },
                     }
-                }, ]
-            });
-            myChart1.hideLoading();
+                }]
+            })
         }, 1000)
     }
 
-    /////////////////////////////////////////////////////////
-    // 设置整点历史统计表
-    function setBarHisCharts(myChart2) {
-        window.chartType = 'bar';
+    ////////////////////////////////////////////////////////////////////////////////
+    // 生成实时终端类型表
+    function setDevTypeRT2(myChart2, myChart1) {
         myChart2.clear();
         myChart2.showLoading();
+        window.setTimeout(function() {
+            myChart2.hideLoading();
+            myChart2.setOption({
+                title: {
+                    text: '手机系统和品牌分布（Top6）',
+                    left: 'center',
+                    top: 0,
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['Android', 'IOS', '未知', 'iphone', '小米', '华为', 'oppo', 'vivo', '三星']
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                series: [{
+                    name: '终端系统',
+                    type: 'pie',
+                    selectedMode: 'single',
+                    radius: [0, '30%'],
+                    label: {
+                        normal: {
+                            position: 'inner'
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        { value: 423, name: 'IOS' },
+                        { value: 143, name: '未知' },
+                        { value: 1000, name: 'Android', selected: true },
+                    ]
+                }, {
+                    name: '终端品牌',
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    data: [
+                        { value: 423, name: 'iphone' },
+                        { value: 143, name: '未知' },
+                        { value: 300, name: '小米' },
+                        { value: 250, name: '华为' },
+                        { value: 200, name: 'oppo' },
+                        { value: 150, name: 'vivo' },
+                        { value: 100, name: '三星' },
+                    ]
+                }],
+            });
+            window.setInterval(function() {
+                var sysType = [{
+                    value: RandomNumBoth(400, 500).toString(),
+                    name: 'IOS',
+                }, {
+                    value: RandomNumBoth(100, 200).toString(),
+                    name: '未知',
+                }, {
+                    value: RandomNumBoth(900, 1500).toString(),
+                    name: 'Android',
+                    selected: true
+                }];
+                var devType = [{
+                    value: RandomNumBoth(400, 500).toString(),
+                    name: 'iphone',
+                }, {
+                    value: RandomNumBoth(100, 200).toString(),
+                    name: '未知',
+                }, {
+                    value: RandomNumBoth(300, 400).toString(),
+                    name: '小米',
+                }, {
+                    value: RandomNumBoth(200, 300).toString(),
+                    name: '华为',
+                }, {
+                    value: RandomNumBoth(100, 200).toString(),
+                    name: 'oppo',
+                }, {
+                    value: RandomNumBoth(50, 100).toString(),
+                    name: 'vivo',
+                }, {
+                    value: RandomNumBoth(0, 50).toString(),
+                    name: '三星',
+                }];
+                var devType2 = [devType[6].value, devType[5].value, devType[4].value, devType[3].value, devType[2].value, devType[0].value, ]
+                myChart1.setOption({
+                    series: [{
+                        data: devType2,
+                    }]
+                })
+                myChart2.setOption({
+                    series: [{
+                        data: sysType,
+                    }, {
+                        data: devType,
+                    }]
+                })
+            }, 2000)
+        }, 1000);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // 生成列表数据
+    function setListData() {
+        var data = [];
+        for (var i = 0; i < dayCount; i++) {
+            var temp = {};
+            temp.date = xDataDays[i];
+            temp.androidDev = yDataDays.android[i];
+            temp.iosDev = yDataDays.ios[i];
+            temp.otherDev = yDataDays.unknown[i];
+            var all = yDataDays.android[i] + yDataDays.ios[i] + yDataDays.unknown[i];
+            temp.androidDevPercent = Math.round((temp.androidDev / all) * 100) + '%';
+            temp.iosPercent = Math.round((temp.iosDev / all) * 100) + '%';
+            temp.unknownPercent = Math.round((temp.otherDev / all) * 100) + '%';
+            data.push(temp);
+        }
+        $('#mytable').bootstrapTable('removeAll');
+        $('#mytable').bootstrapTable('append', data);
+        return true;
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    // 切换为柱状图
+    function setBarChart(myChart3) {
+        window.chartType = 'bar';
         var show = false;
         var disabled = true;
         if (dayCount > 15) {
             show = true;
             disabled = false;
         }
+        myChart3.clear();
+        myChart3.showLoading();
         window.setTimeout(function() {
-            myChart2.hideLoading();
-            myChart2.setOption({
+            myChart3.hideLoading();
+            myChart3.setOption({
                 dataZoom: [{
                     type: 'slider',
                     show: show,
@@ -616,17 +751,15 @@
                     start: 0,
                     end: 100,
                 }],
+                title: {
+                    text: '终端系统统计',
+                    left: 'center'
+                },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
                         type: 'shadow', // line/shadow/cross
-                    },
-                    formatter: '{b}<br />人均访问时长：{c}分钟',
-                },
-                legend: {
-                    left: 'center',
-                    top: 0,
-                    data: ['人均访问时长']
+                    }
                 },
                 toolbox: {
                     show: true,
@@ -638,7 +771,7 @@
                             title: '柱状图',
                             icon: 'image://https://www.weiquaninfo.cn/images/bar.png',
                             onclick: function() {
-                                setBarHisCharts(myChart2);
+                                setBarChart(myChart3);
                             }
                         },
                         myLine: {
@@ -646,10 +779,24 @@
                             title: '折线图',
                             icon: 'image://https://www.weiquaninfo.cn/images/line1.png',
                             onclick: function() {
-                                setLineHisCharts(myChart2);
+                                setLineChart(myChart3);
                             }
                         },
+                        myPie: {
+                            show: true,
+                            title: '饼图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/pie1.png',
+                            onclick: function() {
+                                setPieChart(myChart3);
+                            }
+                        }
                     }
+                },
+                legend: {
+                    type: 'plain',
+                    left: 'center',
+                    top: 30,
+                    data: ['Android', 'IOS', '未知']
                 },
                 xAxis: {
                     type: 'category',
@@ -658,7 +805,7 @@
                 },
                 yAxis: {
                     type: 'value',
-                    name: '人均访问时长(分钟)',
+                    name: '人数',
                     splitNumber: 2,
                     boundaryGap: ['0', '20%'],
                     splitLine: {
@@ -666,39 +813,60 @@
                     },
                 },
                 series: [{
-                    name: '人均访问时长',
+                    name: 'Android',
                     type: 'bar',
-                    data: yData2,
+                    stack: '总数',
+                    data: yDataDays.android,
+                }, {
+                    name: 'IOS',
+                    type: 'bar',
+                    stack: '总数',
+                    data: yDataDays.ios,
+                }, {
+                    name: '未知',
+                    type: 'bar',
+                    stack: '总数',
+                    data: yDataDays.unknown,
                     barWidth: '50%',
-                    itemStyle: {
+                    label: {
                         normal: {
-                            color: '#3598DC',
-                        },
+                            show: true,
+                            position: 'top',
+                            color: "#000",
+                            formatter: function(params) {
+                                return parseInt(yDataDays.android[params.dataIndex]) + parseInt(yDataDays.ios[params.dataIndex]) + parseInt(yDataDays.unknown[params.dataIndex])
+                            }
+                        }
                     },
                 }, ]
-            })
+            });
         }, 1000)
     }
 
-    function setLineHisCharts(myChart2) {
+    ////////////////////////////////////////////////////////////////////////
+    // 切换为折线图setLineChart
+    function setLineChart(myChart3) {
         window.chartType = 'line';
-        myChart2.clear();
-        myChart2.showLoading();
         var show = false;
         var disabled = true;
         if (dayCount > 15) {
             show = true;
             disabled = false;
         }
+        myChart3.clear();
+        myChart3.showLoading();
         window.setTimeout(function() {
-            myChart2.hideLoading();
-            myChart2.setOption({
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'line',
-                    },
-                    formatter: '{b}<br />人均访问时长：{c}分钟',
+            myChart3.hideLoading();
+            myChart3.setOption({
+                title: {
+                    text: '终端系统统计',
+                    left: 'center'
+                },
+                legend: {
+                    type: 'plain',
+                    left: 'center',
+                    top: 30,
+                    data: ['Android', 'IOS', '未知']
                 },
                 toolbox: {
                     show: true,
@@ -710,7 +878,7 @@
                             title: '柱状图',
                             icon: 'image://https://www.weiquaninfo.cn/images/bar1.png',
                             onclick: function() {
-                                setBarHisCharts(myChart2);
+                                setBarChart(myChart3);
                             }
                         },
                         myLine: {
@@ -718,9 +886,23 @@
                             title: '折线图',
                             icon: 'image://https://www.weiquaninfo.cn/images/line.png',
                             onclick: function() {
-                                setLineHisCharts(myChart2);
+                                setLineChart(myChart3);
                             }
                         },
+                        myPie: {
+                            show: true,
+                            title: '饼图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/pie1.png',
+                            onclick: function() {
+                                setPieChart(myChart3);
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'line', // line/shadow/cross
                     }
                 },
                 dataZoom: [{
@@ -734,15 +916,10 @@
                     start: 0,
                     end: 100,
                 }],
-                legend: {
-                    left: 'center',
-                    top: 0,
-                    data: ['访客人数'],
-                },
                 xAxis: {
                     type: 'category',
                     data: xDataDays,
-                    name: '时间',
+                    name: '日期',
                     boundaryGap: false,
                 },
                 yAxis: {
@@ -755,61 +932,133 @@
                     },
                 },
                 series: [{
-                    name: '访客人数',
+                    name: 'Android',
                     type: 'line',
-                    smooth: true,
-                    data: yData2,
-                    itemStyle: {
-                        normal: {
-                            color: 'rgb(53, 152, 220)',
-                        },
-                    },
+                    data: yDataDays.android,
+
+                }, {
+                    name: 'IOS',
+                    type: 'line',
+                    data: yDataDays.ios,
+                }, {
+                    name: '未知',
+                    type: 'line',
+                    data: yDataDays.unknown,
                 }, ]
             });
+        }, 1000);
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    // 切换为饼状图
+    function setPieChart(myChart3) {
+        window.chartType = 'pie';
+        var androidTotal = 0;
+        var iosTotal = 0;
+        var unknownTotal = 0;
+        for (i = 0; i < dayCount; i++) {
+            androidTotal += yDataDays.android[i];
+        }
+        for (i = 0; i < dayCount; i++) {
+            iosTotal += yDataDays.ios[i];
+        }
+        for (i = 0; i < dayCount; i++) {
+            unknownTotal += yDataDays.unknown[i];
+        }
+        myChart3.clear();
+        myChart3.showLoading();
+        window.setTimeout(function() {
+            myChart3.hideLoading();
+            myChart3.setOption({
+                title: {
+                    text: '终端系统统计',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                toolbox: {
+                    show: true,
+                    itemSize: 20,
+                    itemGap: 15,
+                    feature: {
+                        myBar: {
+                            show: true,
+                            title: '柱状图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/bar1.png',
+                            onclick: function() {
+                                setBarChart(myChart3);
+                            }
+                        },
+                        myLine: {
+                            show: true,
+                            title: '折线图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/line1.png',
+                            onclick: function() {
+                                setLineChart(myChart3);
+                            }
+                        },
+                        myPie: {
+                            show: true,
+                            title: '饼图',
+                            icon: 'image://https://www.weiquaninfo.cn/images/pie.png',
+                            onclick: function() {
+                                setPieChart(myChart3);
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    type: 'plain',
+                    left: 'center',
+                    top: 30,
+                    data: ['Android', 'IOS', '未知']
+                },
+                series: [{
+                    name: '终端系统',
+                    type: 'pie',
+                    radius: '55%',
+                    data: [
+                        { value: androidTotal, name: 'Android' },
+                        { value: iosTotal, name: 'IOS' },
+                        { value: unknownTotal, name: '未知' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }]
+            })
         }, 1000)
     }
 
-    ///////////////////////////////////////////////////////////
-    // 补0
-    function padNumber(num, fill) {
-        //改自：http://blog.csdn.net/aimingoo/article/details/4492592
-        var len = ('' + num).length;
-        return (Array(
-            fill > len ? fill - len + 1 || 0 : 0
-        ).join(0) + num);
-    }
-
-    /////////////////////////////////////////////////////////
-    // 生成范围随机数
-    function RandomNumBoth(Min, Max) {
-        var Range = Max - Min;
-        var Rand = Math.random();
-        var num = Min + Math.round(Rand * Range); //四舍五入
-        return num;
-    }
-
-    /////////////////////////////////////////////////////////
-    // 生成多个随机数
-    function getRandomYData(dayCount) {
-        var data = [];
-        for (i = 0; i < dayCount; i++) {
-            data.push(RandomNumBoth(100, 300));
+    // 获取值用随机数
+    function getRandomYData(num) {
+        var android = [];
+        var ios = [];
+        var unknown = [];
+        for (var i = 0; i < num; i++) {
+            android.push(RandomNumBoth(1000, 1500));
+            ios.push(RandomNumBoth(500, 1000));
+            unknown.push(RandomNumBoth(100, 500));
         }
-        return data;
+        return {
+            android: android,
+            ios: ios,
+            unknown: unknown,
+        }
     }
 
-    // 生成列表数据
-    function setListData() {
-        var data = [];
-        for (var i = 0; i < dayCount; i++) {
-            var temp = {};
-            temp.date = xDataDays[i];
-            temp.time = parseInt(yData2[i] / 60) + '小时' + (yData2[i] - parseInt(yData2[i] / 60) * 60) + '分钟' + RandomNumBoth(0, 60) + '秒';
-            data.push(temp);
-        }
-        $('#mytable').bootstrapTable('removeAll');
-        $('#mytable').bootstrapTable('append', data);
-        return true;
+    // 进入明细表
+    window.operateEvents = {
+        'click .detail': function(e, value, row, index) {
+            e.preventDefault();
+            window.location.href = "./devTypeDetail.html";
+        },
     }
     </script>
 </body>

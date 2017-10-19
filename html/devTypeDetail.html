@@ -111,11 +111,11 @@
                                 </li>
                             </ul>
                             <ul class="sub-menu">
-                                <li class="nav-item start open">
+                                <li class="nav-item start ">
                                     <a href="userProperty.html" class="nav-link ">
                                     <i class="iconfont icon-shuxing" style="font-size: 20px;"></i>
                                     <span class="title">上网用户属性统计</span>
-                                    <span class="selected"></span>
+                                    
                                 </a>
                                 </li>
                             </ul>
@@ -128,10 +128,11 @@
                                 </li>
                             </ul>
                             <ul class="sub-menu">
-                                <li class="nav-item start">
+                                <li class="nav-item start open">
                                     <a href="devType.html" class="nav-link ">
                                     <i class="iconfont icon-phone" style="font-size: 20px;"></i>
                                     <span class="title">终端类型统计</span>
+                                    <span class="selected"></span>
                                 </a>
                                 </li>
                             </ul>
@@ -156,18 +157,18 @@
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <a href="userProperty.html"><span>上网用户属性统计</span></a>
+                                <a href="devType.html"><span>终端类型统计</span></a>
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>上网用户来源地</span>
+                                <span>终端类型明细</span>
                             </li>
                         </ul>
                     </div>
                     <!-- END PAGE BAR -->
                     <!-- BEGIN PAGE TITLE-->
-                    <h1 class="page-title">上网用户来源地明细
-                        <small>2017/9/30 - 2017/10/01</small>
+                    <h1 class="page-title">终端类型明细
+                        <small>2017/9/30</small>
                     </h1>
                     <!-- END PAGE TITLE-->
                     <!-- BEGIN DASHBOARD STATS 1-->
@@ -182,7 +183,8 @@
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class="iconfont icon-liebiao" style="font-size: 17px;color:rgb(53,152,220);"></i>
-                                        <span class="caption-subject font-blue sbold uppercase">用户列表</span>
+                                        <span class="caption-subject font-blue sbold uppercase">终端列表</span>
+                                        <!-- <a href="#" id="time_explain"><i class="fa fa-question-circle font-grey-salsa pull-right" style="font-size: 20px;"></i></a> -->
                                     </div>
                                 </div>
                                 <div class="portlet-body">
@@ -193,15 +195,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="sr-only" for="devMacSearch">设备MAC：</label>
-                                            <input type="text" class="form-control" id="devMacSearch" placeholder="用户昵称">
+                                            <input type="text" class="form-control" id="devMacSearch" placeholder="终端种类">
                                         </div>
                                         <div class="form-group">
                                             <label class="sr-only" for="devMacSearch">设备MAC：</label>
-                                            <input type="text" class="form-control" id="devMacSearch" placeholder="省份">
+                                            <input type="text" class="form-control" id="devMacSearch" placeholder="终端系统">
                                         </div>
                                         <div class="form-group">
                                             <label class="sr-only" for="devMacSearch">设备MAC：</label>
-                                            <input type="text" class="form-control" id="devMacSearch" placeholder="城市">
+                                            <input type="text" class="form-control" id="devMacSearch" placeholder="终端品牌">
                                         </div>
                                         <a href="javascript:;" class="btn btn-circle green" id="searchBegin">
                                             <i class="fa fa-search" style="margin-right: 5px;"></i>查询 
@@ -256,8 +258,7 @@
         $('#mytable').bootstrapTable({
             // search: true, // 显示搜索框
             searchAlign: 'left', // 搜索框位置
-            sortName: 'date', // 初始化排序字段
-            sortOrder: 'asc',
+            // sortName: 'mac', // 初始化排序字段
             // url: 'https://weiquaninfo.cn/json/data.json',   
             pagination: true, // 底部显示数量,
             pageNumber: 1, //初始化加载第一页，默认第一页
@@ -273,14 +274,7 @@
             // },
             // showColumns: true, // 显示列选择按钮
             // clickToSelect: true,
-            columns: [{
-                field: 'date',
-                title: '日期',
-                align: 'center',
-                valign: 'middle',
-                sortable: true,
-                visible: true,
-            }, { // 表头
+            columns: [{ // 表头
                 field: 'mac', // 域名
                 title: '终端MAC', //文字名称
                 align: 'center', // 水平居中
@@ -288,72 +282,62 @@
                 sortable: true, //启用排序
                 visible: true,
             }, {
-                field: 'nickName',
-                title: '用户昵称',
+                field: 'devClass',
+                title: '终端种类',
                 align: 'center',
                 valign: 'middle',
                 sortable: true,
                 visible: true,
             }, {
-                field: 'shenfen',
-                title: '省份',
+                field: 'devSysten',
+                title: '终端系统',
                 align: 'center',
                 valign: 'middle',
                 sortable: true,
                 visible: true,
             }, {
-                field: 'city',
-                title: '城市',
+                field: 'devBrand',
+                title: '终端品牌',
                 align: 'center',
                 valign: 'middle',
                 sortable: true,
                 visible: true,
-            }],
+            }, ],
         });
+        var devClassArray = ['电脑', '手机', '平板'];
+        var devSysten = ['Andriod', 'IOS', '未知'];
+        var devBrand = ['三星', 'vivo', 'oppo', '华为', '小米', 'iphone'];
 
         //新增表格数据
-        var data = [{
-            date: '2017/09/30',
-            mac: 'ed:54:1r:bb:t1:45',
-            nickName: 'abc',
-            shenfen: '广东',
-            city: '深圳',
-        }, {
-            date: '2017/09/30',
-            mac: 'ef:54:1r:bb:t1:23',
-            nickName: 'def',
-            shenfen: '上海',
-            city: '上海',
-        }, {
-            date: '2017/09/30',
-            mac: '0f:8y:bt:mn:t0:54',
-            nickName: 'def',
-            shenfen: '江苏',
-            city: '昆山',
-        }, {
-            date: '2017/09/30',
-            mac: '0f:8y:bt:mn:t0:34',
-            nickName: 'def',
-            shenfen: '河南',
-            city: '郑州',
-        }, {
-            date: '2017/09/30',
-            mac: '0f:8y:bt:mn:t0:56',
-            nickName: 'def',
-            shenfen: '湖北',
-            city: '武汉',
-        }];
+        var data = [];
         for (var i = 0; i < 100; i++) {
             data.push({
-                date: '2017/10/01',
-                mac: 'ed:54:1r:bb:t1:45',
-                nickName: 'def',
-                shenfen: '北京',
-                city: '北京',
+                mac: 'ed:54:1r:bb:t1:' + RandomNumBoth(10, 99),
+                devClass: devClassArray[RandomNumBoth(0, 2)],
+                devSysten: devSysten[RandomNumBoth(0, 2)],
+                devBrand: devBrand[RandomNumBoth(0, 5)],
             })
         }
         $('#mytable').bootstrapTable('append', data);
     })
+
+    /////////////////////////////////////////////////////////
+    // 生成范围随机数
+    function RandomNumBoth(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        var num = Min + Math.round(Rand * Range); //四舍五入
+        return num;
+    }
+    ///////////////////////////////////////////////////////////
+    // 补0
+    function padNumber(num, fill) {
+        //改自：http://blog.csdn.net/aimingoo/article/details/4492592
+        var len = ('' + num).length;
+        return (Array(
+            fill > len ? fill - len + 1 || 0 : 0
+        ).join(0) + num);
+    }
     </script>
 </body>
 

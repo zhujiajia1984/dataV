@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"userTime",
+				"userTimeDetail.html"
+			],
+			[
+				"y",
+				"yData"
+			],
+			[
+				"yDa",
+				"yData2〔variable〕"
+			],
+			[
+				"setLin",
+				"setLineHisCharts"
+			],
+			[
 				"setlin",
 				"setLineHisCharts"
 			],
@@ -236,10 +252,19 @@
 	"buffers":
 	[
 		{
-			"file": "html/userTime.html",
+			"file": "html/devType.html",
 			"settings":
 			{
-				"buffer_size": 31031,
+				"buffer_size": 22251,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "html/userProperty.html",
+			"settings":
+			{
+				"buffer_size": 75110,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -354,19 +379,18 @@
 	"expanded_folders":
 	[
 		"/D/Project/web/dataV",
-		"/D/Project/web/dataV/assets/global",
-		"/D/Project/web/dataV/assets/global/plugins",
-		"/D/Project/web/dataV/assets/global/plugins/echarts",
-		"/D/Project/web/dataV/assets/global/plugins/echarts/theme",
 		"/D/Project/web/dataV/html"
 	],
 	"file_history":
 	[
-		"/D/Project/web/dataV/html/userProperty.html",
 		"/D/Project/web/dataV/html/index.html",
 		"/D/Project/web/dataV/html/userCityDetail.html",
 		"/D/Project/web/dataV/html/userNumDetail.html",
+		"/D/Project/web/dataV/html/userProperty.html",
 		"/D/Project/web/dataV/html/userSexDetail.html",
+		"/D/Project/web/dataV/html/userTime.html",
+		"/D/Project/web/dataV/html/userTimeDetail.html",
+		"/D/360云盘/资料文档/01_多倍通工作资料/phone.txt",
 		"/D/Project/web/dataV/html/cityCode.txt",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill.js",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-china-en.js",
@@ -486,10 +510,7 @@
 		"/D/React/reactJs/webpack.config.js",
 		"/D/React/reactJs/src/BasicExample.js",
 		"/D/React/reactJs/public/components/About.js",
-		"/D/React/reactJs/public/components/Topics.js",
-		"/D/React/reactJs/src/App.js",
-		"/D/React/reactJs/public/App.js",
-		"/D/React/reactJs/public/index.html"
+		"/D/React/reactJs/public/components/Topics.js"
 	],
 	"find":
 	{
@@ -510,6 +531,56 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"myChart1",
+			"echarts_devTypeRT1",
+			"title",
+			"setPieChart",
+			"pie",
+			"今日累计",
+			"echarts_devTypeRT",
+			"echarts_userSex",
+			"终端类型统计",
+			"前六名",
+			"route",
+			"Google",
+			"Guangdon",
+			"BeijingS",
+			"AMD",
+			"AMD Inc",
+			"amd",
+			"IntelCor",
+			"intel3",
+			"samsung",
+			"xiaomi",
+			"google",
+			"time_explain",
+			"tooltip",
+			"operateEvents",
+			"setListData",
+			"停留",
+			"setListData",
+			"mytable",
+			"color",
+			"yData",
+			"setBarHisCharts",
+			"getRandomYData",
+			"yDataDays",
+			"setUserTimeToDayCharts",
+			"yDataDays",
+			"setLineHisCharts",
+			"setBarHisCharts",
+			"yDataDays",
+			"yData2",
+			"split",
+			"getRandomYData",
+			"setLineHisCharts",
+			"getRandomYData",
+			"yData",
+			"yData2",
+			"yData",
+			"window.count",
+			"yData",
+			"window.count",
 			"dateTimeSel",
 			"btnLast30Day",
 			"xDataDays.push",
@@ -587,57 +658,7 @@
 			"active",
 			"矢量",
 			"btnLast7Day",
-			"dateTimeSel",
-			"id",
-			"cityArea",
-			"echarts_userRegion2",
-			"echarts_userSex2",
-			"echarts_userRegion",
-			"yAxis:",
-			"按城市",
-			"resize",
-			"flag_tab2",
-			"myChart2",
-			"scale",
-			"myChart2",
-			"g",
-			"echarts_userRegion",
-			"tab2",
-			"echarts_userRegion",
-			"shenArea",
-			"上网用户性别",
-			"归属地",
-			"operateEvents",
-			"setListData",
-			"mytable",
-			"echarts_userSex2",
-			"TAB",
-			"window.chartType == 'bar'",
-			"setPieChart",
-			"legend",
-			"setLineChart",
-			"legend",
-			"setLineChart",
-			"初始化",
-			"setLineChart",
-			"setBarChart",
-			"mans",
-			"未知",
-			"unknowns",
-			"未知",
-			"myChart3",
-			"myChart",
-			"toolbox",
-			"setPieChart",
-			"setLineChart",
-			"tooltip",
-			"btnLast7Day",
-			"dateTimeSel",
-			"dayCount",
-			"btnLast30Day",
-			"formatter",
-			"label",
-			"setLineChart"
+			"dateTimeSel"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -645,6 +666,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"myChart2",
+			"Top6",
+			"访问",
 			"\"",
 			"来源地",
 			"unknowns",
@@ -667,34 +691,69 @@
 			[
 				{
 					"buffer": 0,
-					"file": "html/userTime.html",
+					"file": "html/devType.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 31031,
+						"buffer_size": 22251,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20863,
-								20863
+								21733,
+								21733
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
+							"is_init_dirty_state": false,
 							"open_with_edit": true,
+							"origin_encoding": "UTF-8",
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 17633.0,
+						"translation.y": 17553.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "html/userProperty.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 75110,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								33579,
+								33697
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 30147.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
