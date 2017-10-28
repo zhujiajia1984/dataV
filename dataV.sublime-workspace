@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"dev",
+				"devType.html"
+			],
+			[
 				"userTime",
 				"userTimeDetail.html"
 			],
@@ -156,10 +160,6 @@
 				"wifisetting.html"
 			],
 			[
-				"dev",
-				"devModeSel"
-			],
-			[
 				"rem",
 				"remove〔function〕"
 			],
@@ -252,21 +252,12 @@
 	"buffers":
 	[
 		{
-			"file": "html/devType.html",
+			"file": "html/index.html",
 			"settings":
 			{
-				"buffer_size": 22251,
+				"buffer_size": 42794,
 				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "html/userProperty.html",
-			"settings":
-			{
-				"buffer_size": 75110,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -383,15 +374,19 @@
 	],
 	"file_history":
 	[
+		"/D/Project/web/dataV/html/userProperty.html",
+		"/C/Users/zjj/Desktop/metronic_v4.7.5/theme/assets/pages/scripts/ui-buttons-spinners.js",
+		"/C/Users/zjj/Desktop/metronic_v4.7.5/theme/admin_1/ui_buttons_spinner.html",
 		"/D/Project/web/dataV/html/index.html",
+		"/D/Project/web/dataV/html/devTypeDetail.html",
+		"/D/Project/web/dataV/html/devType.html",
+		"/D/Project/web/dataV/html/cityCode.txt",
+		"/D/Project/web/dataV/html/userTime.html",
 		"/D/Project/web/dataV/html/userCityDetail.html",
 		"/D/Project/web/dataV/html/userNumDetail.html",
-		"/D/Project/web/dataV/html/userProperty.html",
 		"/D/Project/web/dataV/html/userSexDetail.html",
-		"/D/Project/web/dataV/html/userTime.html",
 		"/D/Project/web/dataV/html/userTimeDetail.html",
 		"/D/360云盘/资料文档/01_多倍通工作资料/phone.txt",
-		"/D/Project/web/dataV/html/cityCode.txt",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill.js",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-china-en.js",
 		"/D/Project/web/dataV/assets/global/plugins/jvectormap/jquery-jvectormap-cn-mill - 副本.js",
@@ -506,11 +501,7 @@
 		"/D/androidStudio/projects/MyApplication/gradle.properties",
 		"/D/androidStudio/projects/test/gradle/wrapper/gradle-wrapper.properties",
 		"/D/React/reactJs/src/ParamsExample.js",
-		"/D/React/reactJs/package.json",
-		"/D/React/reactJs/webpack.config.js",
-		"/D/React/reactJs/src/BasicExample.js",
-		"/D/React/reactJs/public/components/About.js",
-		"/D/React/reactJs/public/components/Topics.js"
+		"/D/React/reactJs/package.json"
 	],
 	"find":
 	{
@@ -531,6 +522,64 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"loading",
+			"show",
+			"mytable",
+			"label",
+			"itemstyle",
+			"bar",
+			"setLineHisCharts",
+			"series",
+			"setUserTimeToDayCharts",
+			"实时",
+			"setLine",
+			"setLineHisCharts",
+			"flag_tab1",
+			"setbarchart",
+			"resize",
+			"onsize",
+			"setBarChart1",
+			"echarts",
+			"echarts_time_users",
+			"echarst\necharst",
+			"demo-loading-btn",
+			"data-style",
+			"echarts",
+			"operateEvents",
+			"setListData",
+			"mytable",
+			"unknownDev",
+			"androidDevPercent",
+			"mytable",
+			"android",
+			"setListData",
+			"percent",
+			"setListData",
+			"btnLast7Day",
+			"dayCount",
+			"setLineChart",
+			"myChart3",
+			"setListData",
+			"resize",
+			"yDataDays",
+			"getRandomYData",
+			"setBarChart",
+			"xDataDays",
+			"window.chartType = 'bar';",
+			"setBarChart",
+			"初始化",
+			"myChart3",
+			"setLineChart",
+			"setBarChart",
+			"mytable",
+			"setListData",
+			"yDataDays",
+			"setListData",
+			"btnLast7Day",
+			"dateTimeSel",
+			"btnLast30Day",
+			"echarts_devTypeRT1",
+			"echarts_devTypeRT2",
 			"myChart1",
 			"echarts_devTypeRT1",
 			"title",
@@ -600,65 +649,7 @@
 			"yDataDays",
 			"xDataDays",
 			"echarts_userTimeHis",
-			"circle",
-			"itemStyle",
-			"format",
-			"moment().for",
-			"moment",
-			"resize",
-			"每",
-			"初始化",
-			"usertime",
-			"w.chartType",
-			"window.",
-			"window.barType",
-			"btnLast7Day",
-			"setLineChart",
-			"setBarChart1",
-			"初始化",
-			"lineType",
-			"linetye",
-			"linetye\nlineType",
-			"linetye",
-			"setLineChart",
-			"linetype",
-			"xDataDays",
-			"barType",
-			"setBarChart",
-			"barType",
-			"operateEvents",
-			"cityArea3",
-			"shenArea3",
-			"cityArea3",
-			"shenArea3",
-			"shenArea",
-			"green",
-			"font-",
-			"setListData",
-			"mytable2",
-			"myta",
-			"jvm_map.series.regions[0].setScale(['#DEEBF7', '#08519C']);",
-			"矢量",
-			"，",
-			"”",
-			"“",
-			"Fujian",
-			"RandomNumBoth",
-			"getr",
-			"jvm_map",
-			"map",
-			"山西",
-			"陕西",
-			"山西",
-			"北京",
-			"name",
-			"台湾",
-			"矢量",
-			"…6,3.0703",
-			"active",
-			"矢量",
-			"btnLast7Day",
-			"dateTimeSel"
+			"circle"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -691,69 +682,32 @@
 			[
 				{
 					"buffer": 0,
-					"file": "html/devType.html",
-					"semi_transient": false,
+					"file": "html/index.html",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 22251,
+						"buffer_size": 42794,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								21733,
-								21733
+								32385,
+								32593
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"is_init_dirty_state": false,
-							"open_with_edit": true,
-							"origin_encoding": "UTF-8",
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 17553.0,
+						"translation.y": 132001.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "html/userProperty.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 75110,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								33579,
-								33697
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 30147.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -761,7 +715,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 45.0
+		"height": 42.0
 	},
 	"input":
 	{
@@ -798,7 +752,7 @@
 	"project": "dataV.sublime-project",
 	"replace":
 	{
-		"height": 100.0
+		"height": 80.0
 	},
 	"save_all_on_build": true,
 	"select_file":
